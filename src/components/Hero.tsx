@@ -102,7 +102,7 @@ export function Hero() {
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <Button href="/docs/installation">Get started</Button>
                 <Button
-                  href="https://github.com/nestledjs/nestled"
+                  href="https://github.com/nestledjs/nestled-forms"
                   variant="secondary"
                 >
                   View on GitHub

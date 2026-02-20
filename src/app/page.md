@@ -135,7 +135,7 @@ The shared foundation. Contains `FormFieldClass`, all TypeScript types, form con
 
 ### Submit an issue
 
-Found a bug or have a feature request? Visit our [GitHub repository](https://github.com/nestledjs/nestled) to report bugs, request features, or submit pull requests.
+Found a bug or have a feature request? Visit our [GitHub repository](https://github.com/nestledjs/nestled-forms) to report bugs, request features, or submit pull requests.
 
 ### Join the community
 

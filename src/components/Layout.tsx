@@ -59,7 +59,7 @@ function Header() {
       <div className="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
         <ThemeSelector className="relative z-10" />
         <Link
-          href="https://github.com/nestledjs/nestled"
+          href="https://github.com/nestledjs/nestled-forms"
           className="group"
           aria-label="GitHub"
         >
