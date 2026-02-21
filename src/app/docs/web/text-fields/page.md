@@ -26,10 +26,10 @@ FormFieldClass.text('username', {
 
 ### Text-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
-| `maxLength` | `number` | — | Maximum character count |
+| Option        | Type     | Default | Description             |
+| ------------- | -------- | ------- | ----------------------- |
+| `placeholder` | `string` | —       | Placeholder text        |
+| `maxLength`   | `number` | —       | Maximum character count |
 
 ---
 
@@ -47,11 +47,11 @@ FormFieldClass.textArea('bio', {
 
 ### TextArea-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `rows` | `number` | `3` | Number of visible text rows |
-| `placeholder` | `string` | — | Placeholder text |
-| `maxLength` | `number` | — | Maximum character count |
+| Option        | Type     | Default | Description                 |
+| ------------- | -------- | ------- | --------------------------- |
+| `rows`        | `number` | `3`     | Number of visible text rows |
+| `placeholder` | `string` | —       | Placeholder text            |
+| `maxLength`   | `number` | —       | Maximum character count     |
 
 ---
 
@@ -75,9 +75,9 @@ The email field automatically validates email format in addition to any custom `
 
 ### Email-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description      |
+| ------------- | -------- | ------- | ---------------- |
+| `placeholder` | `string` | —       | Placeholder text |
 
 ---
 
@@ -101,9 +101,9 @@ FormFieldClass.password('password', {
 
 ### Password-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description      |
+| ------------- | -------- | ------- | ---------------- |
+| `placeholder` | `string` | —       | Placeholder text |
 
 ### Password confirmation pattern
 
@@ -135,9 +135,9 @@ FormFieldClass.url('website', {
 
 ### URL-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description      |
+| ------------- | -------- | ------- | ---------------- |
+| `placeholder` | `string` | —       | Placeholder text |
 
 ---
 
@@ -157,9 +157,9 @@ The phone field provides a country code selector and automatically formats the n
 
 ### Phone-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `defaultCountry` | `string` | `'US'` | Default country code |
+| Option           | Type     | Default | Description          |
+| ---------------- | -------- | ------- | -------------------- |
+| `defaultCountry` | `string` | `'US'`  | Default country code |
 
 ---
 

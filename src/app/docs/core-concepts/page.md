@@ -36,11 +36,14 @@ Use the `RenderFormField` component to place individual fields anywhere inside t
 
 ```tsx
 import { Form, RenderFormField, FormFieldClass } from '@nestledjs/forms'
-
-<Form id="contact" submit={(values) => save(values)}>
+;<Form id="contact" submit={(values) => save(values)}>
   <div className="grid grid-cols-2 gap-4">
-    <RenderFormField field={FormFieldClass.text('firstName', { label: 'First Name' })} />
-    <RenderFormField field={FormFieldClass.text('lastName', { label: 'Last Name' })} />
+    <RenderFormField
+      field={FormFieldClass.text('firstName', { label: 'First Name' })}
+    />
+    <RenderFormField
+      field={FormFieldClass.text('lastName', { label: 'Last Name' })}
+    />
   </div>
   <RenderFormField field={FormFieldClass.email('email', { label: 'Email' })} />
   <button type="submit">Submit</button>
@@ -104,55 +107,55 @@ Every field type inherits these options:
 
 ### Display
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `label` | `string` | Label text displayed above the field |
-| `placeholder` | `string` | Placeholder text inside the field |
-| `helpText` | `string` | Help text displayed below the field |
-| `hidden` | `boolean` | Whether the field is hidden |
+| Option        | Type      | Description                          |
+| ------------- | --------- | ------------------------------------ |
+| `label`       | `string`  | Label text displayed above the field |
+| `placeholder` | `string`  | Placeholder text inside the field    |
+| `helpText`    | `string`  | Help text displayed below the field  |
+| `hidden`      | `boolean` | Whether the field is hidden          |
 
 ### State
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `required` | `boolean` | Whether the field is required |
-| `disabled` | `boolean` | Whether the field is disabled |
-| `readOnly` | `boolean` | Whether the field is read-only |
-| `readOnlyStyle` | `'value' \| 'disabled'` | How read-only fields appear |
-| `defaultValue` | `any` | Default value for the field |
+| Option          | Type                    | Description                    |
+| --------------- | ----------------------- | ------------------------------ |
+| `required`      | `boolean`               | Whether the field is required  |
+| `disabled`      | `boolean`               | Whether the field is disabled  |
+| `readOnly`      | `boolean`               | Whether the field is read-only |
+| `readOnlyStyle` | `'value' \| 'disabled'` | How read-only fields appear    |
+| `defaultValue`  | `any`                   | Default value for the field    |
 
 ### Conditional logic
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `showWhen` | `(formValues) => boolean` | Show/hide based on other field values |
-| `requiredWhen` | `(formValues) => boolean` | Make required based on conditions |
-| `disabledWhen` | `(formValues) => boolean` | Disable based on conditions |
-| `validateWhen` | `(formValues) => boolean` | Only validate when condition is met |
+| Option         | Type                      | Description                           |
+| -------------- | ------------------------- | ------------------------------------- |
+| `showWhen`     | `(formValues) => boolean` | Show/hide based on other field values |
+| `requiredWhen` | `(formValues) => boolean` | Make required based on conditions     |
+| `disabledWhen` | `(formValues) => boolean` | Disable based on conditions           |
+| `validateWhen` | `(formValues) => boolean` | Only validate when condition is met   |
 
 ### Validation
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `validate` | `(value) => true \| string \| Promise` | Validation function |
-| `schema` | `ZodTypeAny` | Zod validation schema |
-| `validateWithForm` | `(value, formValues) => true \| string` | Cross-field validation |
-| `validationDependencies` | `string[]` | Fields that trigger re-validation |
-| `validationGroup` | `string` | Group for multi-step validation |
-| `errorMessages` | `object` | Custom error messages |
+| Option                   | Type                                    | Description                       |
+| ------------------------ | --------------------------------------- | --------------------------------- |
+| `validate`               | `(value) => true \| string \| Promise`  | Validation function               |
+| `schema`                 | `ZodTypeAny`                            | Zod validation schema             |
+| `validateWithForm`       | `(value, formValues) => true \| string` | Cross-field validation            |
+| `validationDependencies` | `string[]`                              | Fields that trigger re-validation |
+| `validationGroup`        | `string`                                | Group for multi-step validation   |
+| `errorMessages`          | `object`                                | Custom error messages             |
 
 ### Layout
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `wrapperClassName` | `string` | CSS class for the field wrapper |
-| `layout` | `'horizontal' \| 'vertical'` | Label/input arrangement |
-| `customWrapper` | `(children) => JSX.Element` | Custom wrapper component |
+| Option             | Type                         | Description                     |
+| ------------------ | ---------------------------- | ------------------------------- |
+| `wrapperClassName` | `string`                     | CSS class for the field wrapper |
+| `layout`           | `'horizontal' \| 'vertical'` | Label/input arrangement         |
+| `customWrapper`    | `(children) => JSX.Element`  | Custom wrapper component        |
 
 ### Transform
 
-| Option | Type | Description |
-| --- | --- | --- |
+| Option            | Type                 | Description                            |
+| ----------------- | -------------------- | -------------------------------------- |
 | `submitTransform` | `(value) => unknown` | Transform value before form submission |
 
 ---
@@ -165,15 +168,15 @@ The `Form` component is the top-level wrapper for all fields. It manages form st
 
 ```tsx
 interface FormProps<T> {
-  id: string                          // Unique form identifier
-  fields?: FormField[]                // Declarative field definitions
-  submit: (values: T) => void         // Submit handler
-  initialValues?: Partial<T>          // Pre-fill form values
-  readOnly?: boolean                  // Make all fields read-only
-  theme?: FormTheme                   // Custom theme
-  validateOnBlur?: boolean            // Validate fields on blur
-  validateOnChange?: boolean          // Validate fields on change
-  children?: React.ReactNode          // Child elements (buttons, imperative fields)
+  id: string // Unique form identifier
+  fields?: FormField[] // Declarative field definitions
+  submit: (values: T) => void // Submit handler
+  initialValues?: Partial<T> // Pre-fill form values
+  readOnly?: boolean // Make all fields read-only
+  theme?: FormTheme // Custom theme
+  validateOnBlur?: boolean // Validate fields on blur
+  validateOnChange?: boolean // Validate fields on change
+  children?: React.ReactNode // Child elements (buttons, imperative fields)
 }
 ```
 
@@ -191,7 +194,9 @@ interface FormProps<T> {
 >
   <div className="flex gap-4">
     <button type="submit">Save Invoice</button>
-    <button type="button" onClick={onCancel}>Cancel</button>
+    <button type="button" onClick={onCancel}>
+      Cancel
+    </button>
   </div>
 </Form>
 ```
@@ -209,7 +214,10 @@ function SubmitButton() {
   const { formValues, errors, isSubmitting } = useFormContext()
 
   return (
-    <button type="submit" disabled={isSubmitting || Object.keys(errors).length > 0}>
+    <button
+      type="submit"
+      disabled={isSubmitting || Object.keys(errors).length > 0}
+    >
       {isSubmitting ? 'Saving...' : 'Submit'}
     </button>
   )
@@ -218,14 +226,14 @@ function SubmitButton() {
 
 The context provides:
 
-| Property | Type | Description |
-| --- | --- | --- |
-| `formValues` | `object` | Current values of all fields |
-| `errors` | `object` | Current validation errors |
-| `isSubmitting` | `boolean` | Whether the form is submitting |
-| `setValue` | `(key, value) => void` | Programmatically set a field value |
-| `setError` | `(key, error) => void` | Programmatically set a field error |
-| `reset` | `() => void` | Reset form to initial values |
+| Property       | Type                   | Description                        |
+| -------------- | ---------------------- | ---------------------------------- |
+| `formValues`   | `object`               | Current values of all fields       |
+| `errors`       | `object`               | Current validation errors          |
+| `isSubmitting` | `boolean`              | Whether the form is submitting     |
+| `setValue`     | `(key, value) => void` | Programmatically set a field value |
+| `setError`     | `(key, error) => void` | Programmatically set a field error |
+| `reset`        | `() => void`           | Reset form to initial values       |
 
 ---
 
@@ -261,14 +269,14 @@ function CustomField() {
 
 ## Field types at a glance
 
-| Category | Field types |
-| --- | --- |
-| **Text input** | `text`, `textArea`, `email`, `password`, `url`, `phone` |
-| **Numeric** | `number`, `currency` |
-| **Selection** | `select`, `multiSelect`, `enumSelect`, `radio`, `checkboxGroup` |
-| **Search** | `searchSelect`, `searchSelectApollo`, `searchSelectMulti`, `searchSelectMultiApollo` |
-| **Boolean** | `checkbox`, `switch`, `customCheckbox` |
-| **Date & time** | `datePicker`, `dateTimePicker`, `timePicker` |
-| **Rich content** | `markdownEditor`, `content`, `custom`, `button` |
+| Category         | Field types                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| **Text input**   | `text`, `textArea`, `email`, `password`, `url`, `phone`                              |
+| **Numeric**      | `number`, `currency`                                                                 |
+| **Selection**    | `select`, `multiSelect`, `enumSelect`, `radio`, `checkboxGroup`                      |
+| **Search**       | `searchSelect`, `searchSelectApollo`, `searchSelectMulti`, `searchSelectMultiApollo` |
+| **Boolean**      | `checkbox`, `switch`, `customCheckbox`                                               |
+| **Date & time**  | `datePicker`, `dateTimePicker`, `timePicker`                                         |
+| **Rich content** | `markdownEditor`, `content`, `custom`, `button`                                      |
 
 Each category has a dedicated documentation page with detailed options, examples, and usage patterns.

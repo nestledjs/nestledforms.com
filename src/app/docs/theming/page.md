@@ -14,7 +14,7 @@ The web library ships with a Tailwind CSS theme (`tailwindTheme`) that's applied
 import { Form, FormFieldClass } from '@nestledjs/forms'
 
 // Uses tailwindTheme by default
-<Form id="my-form" fields={fields} submit={save}>
+;<Form id="my-form" fields={fields} submit={save}>
   <button type="submit">Submit</button>
 </Form>
 ```
@@ -46,8 +46,8 @@ const myTheme = createCustomTheme({
 
 ```tsx
 const theme = createCustomTheme({
-  input: 'custom-input-class',    // Overrides input styles
-  label: 'custom-label-class',    // Overrides label styles
+  input: 'custom-input-class', // Overrides input styles
+  label: 'custom-label-class', // Overrides label styles
   // All other properties inherit from tailwindTheme
 })
 ```
@@ -60,68 +60,68 @@ The theme object controls styling for every part of every field type.
 
 ### Global properties
 
-| Property | Description |
-| --- | --- |
-| `input` | Text input, email, password, URL, number fields |
-| `textarea` | TextArea field |
-| `label` | Field labels |
-| `error` | Validation error messages |
-| `helpText` | Help text below fields |
+| Property       | Description                                       |
+| -------------- | ------------------------------------------------- |
+| `input`        | Text input, email, password, URL, number fields   |
+| `textarea`     | TextArea field                                    |
+| `label`        | Field labels                                      |
+| `error`        | Validation error messages                         |
+| `helpText`     | Help text below fields                            |
 | `fieldWrapper` | Wrapper around each field (label + input + error) |
-| `required` | Required indicator styling |
-| `placeholder` | Placeholder text styling |
+| `required`     | Required indicator styling                        |
+| `placeholder`  | Placeholder text styling                          |
 
 ### Select properties
 
-| Property | Description |
-| --- | --- |
-| `select` | Standard select dropdown |
-| `selectMulti` | Multi-select dropdown |
-| `selectOption` | Individual option in dropdown |
-| `selectOptionSelected` | Selected option styling |
+| Property               | Description                   |
+| ---------------------- | ----------------------------- |
+| `select`               | Standard select dropdown      |
+| `selectMulti`          | Multi-select dropdown         |
+| `selectOption`         | Individual option in dropdown |
+| `selectOptionSelected` | Selected option styling       |
 
 ### Search select properties
 
-| Property | Description |
-| --- | --- |
-| `searchInput` | Search input inside dropdown |
-| `searchDropdown` | Dropdown container |
-| `searchOption` | Individual search result option |
-| `searchOptionHighlighted` | Highlighted/hovered search option |
-| `inputWithClear` | Input wrapper when clear button is shown |
-| `clearButton` | Clear/X button |
-| `clearIcon` | Icon inside clear button |
+| Property                  | Description                              |
+| ------------------------- | ---------------------------------------- |
+| `searchInput`             | Search input inside dropdown             |
+| `searchDropdown`          | Dropdown container                       |
+| `searchOption`            | Individual search result option          |
+| `searchOptionHighlighted` | Highlighted/hovered search option        |
+| `inputWithClear`          | Input wrapper when clear button is shown |
+| `clearButton`             | Clear/X button                           |
+| `clearIcon`               | Icon inside clear button                 |
 
 ### Checkbox and switch properties
 
-| Property | Description |
-| --- | --- |
-| `checkbox` | Checkbox input |
-| `checkboxLabel` | Label next to checkbox |
-| `switch` | Switch/toggle input |
-| `switchLabel` | Label next to switch |
-| `customCheckbox` | Custom checkbox styling |
-| `radioOption` | Individual radio button |
-| `radioLabel` | Label next to radio button |
+| Property              | Description                    |
+| --------------------- | ------------------------------ |
+| `checkbox`            | Checkbox input                 |
+| `checkboxLabel`       | Label next to checkbox         |
+| `switch`              | Switch/toggle input            |
+| `switchLabel`         | Label next to switch           |
+| `customCheckbox`      | Custom checkbox styling        |
+| `radioOption`         | Individual radio button        |
+| `radioLabel`          | Label next to radio button     |
 | `checkboxGroupOption` | Individual checkbox in a group |
-| `checkboxGroupLabel` | Label in checkbox group |
+| `checkboxGroupLabel`  | Label in checkbox group        |
 
 ### Date/time properties
 
-| Property | Description |
-| --- | --- |
-| `datePicker` | Date picker input |
+| Property         | Description           |
+| ---------------- | --------------------- |
+| `datePicker`     | Date picker input     |
 | `dateTimePicker` | DateTime picker input |
-| `timePicker` | Time picker input |
+| `timePicker`     | Time picker input     |
 
 ### Other properties
 
-| Property | Description |
-| --- | --- |
-| `button` | Button field styling |
-| `content` | Content field wrapper |
+| Property         | Description               |
+| ---------------- | ------------------------- |
+| `button`         | Button field styling      |
+| `content`        | Content field wrapper     |
 | `markdownEditor` | Markdown editor container |
-| `customField` | Custom field wrapper |
+| `customField`    | Custom field wrapper      |
 
 ---
 
@@ -184,7 +184,7 @@ import { createFinalTheme, tailwindTheme } from '@nestledjs/forms'
 function MyForm({ isDarkMode }) {
   const theme = createFinalTheme(
     tailwindTheme,
-    isDarkMode ? darkOverrides : lightOverrides
+    isDarkMode ? darkOverrides : lightOverrides,
   )
 
   return (
@@ -216,8 +216,8 @@ FormFieldClass.text('name', {
 FormFieldClass.text('highlighted', {
   label: 'Important Field',
   customWrapper: (children) => (
-    <div className="border-2 border-yellow-400 p-4 rounded-lg bg-yellow-50">
-      <span className="text-yellow-800 text-xs font-bold">Priority</span>
+    <div className="rounded-lg border-2 border-yellow-400 bg-yellow-50 p-4">
+      <span className="text-xs font-bold text-yellow-800">Priority</span>
       {children}
     </div>
   ),

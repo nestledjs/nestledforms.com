@@ -26,10 +26,10 @@ FormFieldClass.searchSelect('assignee', {
 
 ### SearchSelect-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `options` | `SelectOption[]` | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | `string` | `'Search...'` | Placeholder text |
+| Option        | Type             | Default       | Description                         |
+| ------------- | ---------------- | ------------- | ----------------------------------- |
+| `options`     | `SelectOption[]` | `[]`          | Array of `{ value, label }` objects |
+| `placeholder` | `string`         | `'Search...'` | Placeholder text                    |
 
 ### Clearing a selection
 
@@ -77,13 +77,13 @@ FormFieldClass.searchSelectApollo('userId', {
 
 ### SearchSelectApollo-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `document` | `DocumentNode` | — | GraphQL query document |
-| `dataType` | `string` | — | Key in the query result containing the data array |
-| `searchFields` | `string[]` | — | Fields to include in the search query |
-| `selectOptionsFunction` | `(data) => SelectOption[]` | — | Maps query results to select options |
-| `placeholder` | `string` | `'Search...'` | Placeholder text |
+| Option                  | Type                       | Default       | Description                                       |
+| ----------------------- | -------------------------- | ------------- | ------------------------------------------------- |
+| `document`              | `DocumentNode`             | —             | GraphQL query document                            |
+| `dataType`              | `string`                   | —             | Key in the query result containing the data array |
+| `searchFields`          | `string[]`                 | —             | Fields to include in the search query             |
+| `selectOptionsFunction` | `(data) => SelectOption[]` | —             | Maps query results to select options              |
+| `placeholder`           | `string`                   | `'Search...'` | Placeholder text                                  |
 
 ### How it works
 
@@ -120,10 +120,10 @@ FormFieldClass.searchSelectMulti('tags', {
 
 ### SearchSelectMulti-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `options` | `SelectOption[]` | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | `string` | `'Search...'` | Placeholder text |
+| Option        | Type             | Default       | Description                         |
+| ------------- | ---------------- | ------------- | ----------------------------------- |
+| `options`     | `SelectOption[]` | `[]`          | Array of `{ value, label }` objects |
+| `placeholder` | `string`         | `'Search...'` | Placeholder text                    |
 
 The value returned on submit is an array of selected values: `['frontend', 'backend']`.
 

@@ -10,17 +10,17 @@ Show, hide, require, and disable fields dynamically based on the values of other
 
 Every field type in Nestled Forms supports four conditional properties:
 
-| Property | Description |
-| --- | --- |
-| `showWhen` | Show or hide the field |
+| Property       | Description                         |
+| -------------- | ----------------------------------- |
+| `showWhen`     | Show or hide the field              |
 | `requiredWhen` | Make the field required or optional |
-| `disabledWhen` | Enable or disable the field |
-| `validateWhen` | Enable or skip validation |
+| `disabledWhen` | Enable or disable the field         |
+| `validateWhen` | Enable or skip validation           |
 
 Each takes a function that receives the current form values and returns a `boolean`.
 
 ```tsx
-(formValues: Record<string, any>) => boolean
+;(formValues: Record<string, any>) => boolean
 ```
 
 ---

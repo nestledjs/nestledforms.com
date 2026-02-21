@@ -52,11 +52,7 @@ const fields = [
 
 export function SignupForm() {
   return (
-    <Form
-      id="signup"
-      fields={fields}
-      submit={(values) => console.log(values)}
-    >
+    <Form id="signup" fields={fields} submit={(values) => console.log(values)}>
       <button type="submit">Create Account</button>
     </Form>
   )
@@ -71,8 +67,18 @@ import { Form, RenderFormField, FormFieldClass } from '@nestledjs/forms'
 export function SignupForm() {
   return (
     <Form id="signup" submit={(values) => console.log(values)}>
-      <RenderFormField field={FormFieldClass.text('name', { label: 'Full Name', required: true })} />
-      <RenderFormField field={FormFieldClass.email('email', { label: 'Email', required: true })} />
+      <RenderFormField
+        field={FormFieldClass.text('name', {
+          label: 'Full Name',
+          required: true,
+        })}
+      />
+      <RenderFormField
+        field={FormFieldClass.email('email', {
+          label: 'Email',
+          required: true,
+        })}
+      />
       <button type="submit">Create Account</button>
     </Form>
   )

@@ -70,13 +70,13 @@ FormFieldClass.searchSelectApollo('userId', {
 
 ### Configuration options
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `document` | `DocumentNode` | The GraphQL query to execute |
-| `dataType` | `string` | The key in the query result that contains the data array |
-| `searchFields` | `string[]` | Fields to include in the search filter |
-| `selectOptionsFunction` | `(data) => SelectOption[]` | Maps query results to `{ value, label }` options |
-| `placeholder` | `string` | Placeholder text for the search input |
+| Option                  | Type                       | Description                                              |
+| ----------------------- | -------------------------- | -------------------------------------------------------- |
+| `document`              | `DocumentNode`             | The GraphQL query to execute                             |
+| `dataType`              | `string`                   | The key in the query result that contains the data array |
+| `searchFields`          | `string[]`                 | Fields to include in the search filter                   |
+| `selectOptionsFunction` | `(data) => SelectOption[]` | Maps query results to `{ value, label }` options         |
+| `placeholder`           | `string`                   | Placeholder text for the search input                    |
 
 ---
 

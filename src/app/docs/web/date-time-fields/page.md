@@ -19,10 +19,10 @@ FormFieldClass.datePicker('birthDate', {
 
 ### DatePicker-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
-| `defaultValue` | `string \| Date` | — | Initial date value |
+| Option         | Type             | Default | Description        |
+| -------------- | ---------------- | ------- | ------------------ |
+| `placeholder`  | `string`         | —       | Placeholder text   |
+| `defaultValue` | `string \| Date` | —       | Initial date value |
 
 ### Date format
 
@@ -44,10 +44,10 @@ FormFieldClass.dateTimePicker('eventStart', {
 
 ### DateTimePicker-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
-| `defaultValue` | `string \| Date` | — | Initial datetime value |
+| Option         | Type             | Default | Description            |
+| -------------- | ---------------- | ------- | ---------------------- |
+| `placeholder`  | `string`         | —       | Placeholder text       |
+| `defaultValue` | `string \| Date` | —       | Initial datetime value |
 
 ### DateTime format
 
@@ -68,10 +68,10 @@ FormFieldClass.timePicker('openingTime', {
 
 ### TimePicker-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
-| `defaultValue` | `string` | — | Initial time value |
+| Option         | Type     | Default | Description        |
+| -------------- | -------- | ------- | ------------------ |
+| `placeholder`  | `string` | —       | Placeholder text   |
+| `defaultValue` | `string` | —       | Initial time value |
 
 ---
 
@@ -91,7 +91,10 @@ const fields = [
     required: true,
     wrapperClassName: 'col-span-1',
     validateWithForm: (value, formValues) => {
-      if (formValues.startDate && new Date(value) < new Date(formValues.startDate)) {
+      if (
+        formValues.startDate &&
+        new Date(value) < new Date(formValues.startDate)
+      ) {
         return 'End date must be after start date'
       }
       return true
@@ -117,7 +120,10 @@ const fields = [
     label: 'End Time',
     required: true,
     validateWithForm: (value, formValues) => {
-      if (formValues.startTime && new Date(value) <= new Date(formValues.startTime)) {
+      if (
+        formValues.startTime &&
+        new Date(value) <= new Date(formValues.startTime)
+      ) {
         return 'End time must be after start time'
       }
       return true

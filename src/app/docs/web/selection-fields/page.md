@@ -26,10 +26,10 @@ FormFieldClass.select('country', {
 
 ### Select-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `options` | `SelectOption[]` | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | `string` | `'Select...'` | Placeholder text when no option is selected |
+| Option        | Type             | Default       | Description                                 |
+| ------------- | ---------------- | ------------- | ------------------------------------------- |
+| `options`     | `SelectOption[]` | `[]`          | Array of `{ value, label }` objects         |
+| `placeholder` | `string`         | `'Select...'` | Placeholder text when no option is selected |
 
 ### SelectOption type
 
@@ -62,10 +62,10 @@ FormFieldClass.multiSelect('skills', {
 
 ### MultiSelect-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `options` | `SelectOption[]` | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | `string` | `'Select...'` | Placeholder text |
+| Option        | Type             | Default       | Description                         |
+| ------------- | ---------------- | ------------- | ----------------------------------- |
+| `options`     | `SelectOption[]` | `[]`          | Array of `{ value, label }` objects |
+| `placeholder` | `string`         | `'Select...'` | Placeholder text                    |
 
 The value returned on submit is an array of selected values: `['react', 'typescript']`.
 
@@ -91,10 +91,10 @@ FormFieldClass.enumSelect('role', {
 
 ### EnumSelect-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `enumObject` | `object` | — | TypeScript enum or `{ key: value }` object |
-| `placeholder` | `string` | `'Select...'` | Placeholder text |
+| Option        | Type     | Default       | Description                                |
+| ------------- | -------- | ------------- | ------------------------------------------ |
+| `enumObject`  | `object` | —             | TypeScript enum or `{ key: value }` object |
+| `placeholder` | `string` | `'Select...'` | Placeholder text                           |
 
 The enum keys become the labels and the enum values become the option values. For more control over labels, use a regular `select` with manually defined options.
 
@@ -118,10 +118,10 @@ FormFieldClass.radio('plan', {
 
 ### Radio-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `radioOptions` | `RadioOption[]` | `[]` | Array of `{ value, label }` objects |
-| `layout` | `'horizontal' \| 'vertical'` | `'vertical'` | Direction of radio options |
+| Option         | Type                         | Default      | Description                         |
+| -------------- | ---------------------------- | ------------ | ----------------------------------- |
+| `radioOptions` | `RadioOption[]`              | `[]`         | Array of `{ value, label }` objects |
+| `layout`       | `'horizontal' \| 'vertical'` | `'vertical'` | Direction of radio options          |
 
 ### RadioOption type
 
@@ -154,10 +154,10 @@ FormFieldClass.checkboxGroup('notifications', {
 
 ### CheckboxGroup-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `checkboxOptions` | `CheckboxOption[]` | `[]` | Array of `{ value, label }` objects |
-| `layout` | `'horizontal' \| 'vertical'` | `'vertical'` | Direction of checkbox options |
+| Option            | Type                         | Default      | Description                         |
+| ----------------- | ---------------------------- | ------------ | ----------------------------------- |
+| `checkboxOptions` | `CheckboxOption[]`           | `[]`         | Array of `{ value, label }` objects |
+| `layout`          | `'horizontal' \| 'vertical'` | `'vertical'` | Direction of checkbox options       |
 
 The value returned on submit is an array: `['email', 'push']`.
 

@@ -39,9 +39,7 @@ export function MyForm() {
   return (
     <Form
       id="my-form"
-      fields={[
-        FormFieldClass.text('name', { label: 'Name', required: true }),
-      ]}
+      fields={[FormFieldClass.text('name', { label: 'Name', required: true })]}
       submit={(values) => console.log(values)}
     >
       <button type="submit">Submit</button>
@@ -125,9 +123,7 @@ export function MyForm() {
   return (
     <NativeForm
       id="my-form"
-      fields={[
-        FormFieldClass.text('name', { label: 'Name', required: true }),
-      ]}
+      fields={[FormFieldClass.text('name', { label: 'Name', required: true })]}
       submit={(values) => console.log(values)}
     />
   )
@@ -140,11 +136,11 @@ export function MyForm() {
 
 Nestled Forms is structured as three packages:
 
-| Package | Purpose | Depends on |
-| --- | --- | --- |
-| `@nestledjs/forms-core` | Shared types, `FormFieldClass`, validation, utilities | — |
-| `@nestledjs/forms` | Web React components, Tailwind theme | `forms-core` |
-| `@nestledjs/forms-native` | React Native components, native theme | `forms-core` |
+| Package                   | Purpose                                               | Depends on   |
+| ------------------------- | ----------------------------------------------------- | ------------ |
+| `@nestledjs/forms-core`   | Shared types, `FormFieldClass`, validation, utilities | —            |
+| `@nestledjs/forms`        | Web React components, Tailwind theme                  | `forms-core` |
+| `@nestledjs/forms-native` | React Native components, native theme                 | `forms-core` |
 
 You never need to install `@nestledjs/forms-core` directly — it's included as a dependency of both `@nestledjs/forms` and `@nestledjs/forms-native`. All exports from `forms-core` (like `FormFieldClass`, types, hooks) are re-exported from both platform packages.
 
@@ -163,7 +159,7 @@ interface SignupValues {
   role: string
 }
 
-<Form<SignupValues>
+;<Form<SignupValues>
   id="signup"
   fields={fields}
   submit={(values) => {

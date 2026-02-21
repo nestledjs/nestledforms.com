@@ -19,8 +19,8 @@ FormFieldClass.checkbox('agreeToTerms', {
 
 ### Checkbox-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
+| Option         | Type      | Default | Description           |
+| -------------- | --------- | ------- | --------------------- |
 | `defaultValue` | `boolean` | `false` | Initial checked state |
 
 ### Validation
@@ -48,8 +48,8 @@ FormFieldClass.switch('emailNotifications', {
 
 ### Switch-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
+| Option         | Type      | Default | Description          |
+| -------------- | --------- | ------- | -------------------- |
 | `defaultValue` | `boolean` | `false` | Initial toggle state |
 
 **When to use Switch vs Checkbox:** Use a switch for settings that take effect immediately or represent an on/off state. Use a checkbox for consent, agreement, or when the state change happens on form submission.
@@ -69,8 +69,8 @@ FormFieldClass.customCheckbox('featured', {
 
 ### CustomCheckbox-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
+| Option         | Type      | Default | Description           |
+| -------------- | --------- | ------- | --------------------- |
 | `defaultValue` | `boolean` | `false` | Initial checked state |
 
 The custom checkbox renders with theme-controlled classes, giving you full control over its appearance through the theming system.

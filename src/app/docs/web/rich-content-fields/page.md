@@ -20,9 +20,9 @@ FormFieldClass.markdownEditor('description', {
 
 ### MarkdownEditor-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description      |
+| ------------- | -------- | ------- | ---------------- |
+| `placeholder` | `string` | —       | Placeholder text |
 
 ### Features
 
@@ -75,15 +75,16 @@ A display-only field for showing static content, instructions, or messages withi
 ```tsx
 FormFieldClass.content('instructions', {
   label: 'Important',
-  content: 'Please fill out all required fields before submitting. Your information will be reviewed within 24 hours.',
+  content:
+    'Please fill out all required fields before submitting. Your information will be reviewed within 24 hours.',
 })
 ```
 
 ### Content-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `content` | `string \| ReactNode` | — | The content to display |
+| Option    | Type                  | Default | Description            |
+| --------- | --------------------- | ------- | ---------------------- |
+| `content` | `string \| ReactNode` | —       | The content to display |
 
 ### Use cases
 
@@ -97,7 +98,8 @@ FormFieldClass.content('instructions', {
 ```tsx
 FormFieldClass.content('warning', {
   label: 'Warning',
-  content: 'You are about to create a public listing. This action cannot be undone.',
+  content:
+    'You are about to create a public listing. This action cannot be undone.',
   showWhen: (values) => values.visibility === 'public',
 })
 ```
@@ -127,21 +129,21 @@ FormFieldClass.custom('colorPicker', {
 
 ### Custom-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `component` | `(props) => JSX.Element` | — | Custom React component |
+| Option      | Type                     | Default | Description            |
+| ----------- | ------------------------ | ------- | ---------------------- |
+| `component` | `(props) => JSX.Element` | —       | Custom React component |
 
 ### Component props
 
 Your custom component receives:
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| `value` | `any` | Current field value |
-| `onChange` | `(value) => void` | Update the field value |
-| `error` | `string \| undefined` | Current validation error |
-| `disabled` | `boolean` | Whether the field is disabled |
-| `readOnly` | `boolean` | Whether the field is read-only |
+| Prop       | Type                  | Description                    |
+| ---------- | --------------------- | ------------------------------ |
+| `value`    | `any`                 | Current field value            |
+| `onChange` | `(value) => void`     | Update the field value         |
+| `error`    | `string \| undefined` | Current validation error       |
+| `disabled` | `boolean`             | Whether the field is disabled  |
+| `readOnly` | `boolean`             | Whether the field is read-only |
 
 ### Advanced custom field
 
@@ -150,7 +152,7 @@ FormFieldClass.custom('fileUpload', {
   label: 'Upload Document',
   required: true,
   component: ({ value, onChange, error, disabled }) => (
-    <div className="border-2 border-dashed rounded-lg p-6 text-center">
+    <div className="rounded-lg border-2 border-dashed p-6 text-center">
       {value ? (
         <div>
           <p>{value.name}</p>
@@ -164,7 +166,7 @@ FormFieldClass.custom('fileUpload', {
           accept=".pdf,.doc,.docx"
         />
       )}
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+      {error && <p className="mt-2 text-red-500">{error}</p>}
     </div>
   ),
   validate: (value) => value != null || 'Please upload a document',
@@ -188,10 +190,10 @@ FormFieldClass.button('addItem', {
 
 ### Button-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `onClick` | `() => void` | — | Click handler |
-| `variant` | `string` | — | Button style variant |
+| Option    | Type         | Default | Description          |
+| --------- | ------------ | ------- | -------------------- |
+| `onClick` | `() => void` | —       | Click handler        |
+| `variant` | `string`     | —       | Button style variant |
 
 ### Use cases
 
@@ -221,17 +223,35 @@ const fields = [
     content: 'Personal Information',
     wrapperClassName: 'col-span-2 font-bold text-lg border-b pb-2',
   }),
-  FormFieldClass.text('firstName', { label: 'First Name', wrapperClassName: 'col-span-1' }),
-  FormFieldClass.text('lastName', { label: 'Last Name', wrapperClassName: 'col-span-1' }),
-  FormFieldClass.email('email', { label: 'Email', wrapperClassName: 'col-span-2' }),
+  FormFieldClass.text('firstName', {
+    label: 'First Name',
+    wrapperClassName: 'col-span-1',
+  }),
+  FormFieldClass.text('lastName', {
+    label: 'Last Name',
+    wrapperClassName: 'col-span-1',
+  }),
+  FormFieldClass.email('email', {
+    label: 'Email',
+    wrapperClassName: 'col-span-2',
+  }),
 
   FormFieldClass.content('addressInfo', {
     content: 'Address Information',
     wrapperClassName: 'col-span-2 font-bold text-lg border-b pb-2 mt-4',
   }),
-  FormFieldClass.text('street', { label: 'Street Address', wrapperClassName: 'col-span-2' }),
-  FormFieldClass.text('city', { label: 'City', wrapperClassName: 'col-span-1' }),
-  FormFieldClass.text('zip', { label: 'ZIP Code', wrapperClassName: 'col-span-1' }),
+  FormFieldClass.text('street', {
+    label: 'Street Address',
+    wrapperClassName: 'col-span-2',
+  }),
+  FormFieldClass.text('city', {
+    label: 'City',
+    wrapperClassName: 'col-span-1',
+  }),
+  FormFieldClass.text('zip', {
+    label: 'ZIP Code',
+    wrapperClassName: 'col-span-1',
+  }),
 ]
 ```
 

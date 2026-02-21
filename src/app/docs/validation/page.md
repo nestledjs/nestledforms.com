@@ -17,7 +17,8 @@ FormFieldClass.text('username', {
   validate: (value) => {
     if (value.length < 3) return 'Must be at least 3 characters'
     if (value.length > 20) return 'Must be 20 characters or less'
-    if (!/^[a-zA-Z0-9_]+$/.test(value)) return 'Only letters, numbers, and underscores'
+    if (!/^[a-zA-Z0-9_]+$/.test(value))
+      return 'Only letters, numbers, and underscores'
     return true
   },
 })
@@ -109,7 +110,10 @@ When you use `validateWithForm`, specify `validationDependencies` to tell the fo
 FormFieldClass.datePicker('endDate', {
   label: 'End Date',
   validateWithForm: (value, formValues) => {
-    if (formValues.startDate && new Date(value) <= new Date(formValues.startDate)) {
+    if (
+      formValues.startDate &&
+      new Date(value) <= new Date(formValues.startDate)
+    ) {
       return 'End date must be after start date'
     }
     return true
@@ -218,7 +222,8 @@ Use `validateWhen` to only run validation when a condition is met.
 ```tsx
 FormFieldClass.text('taxId', {
   label: 'Tax ID',
-  validate: (value) => /^\d{2}-\d{7}$/.test(value) || 'Invalid format (XX-XXXXXXX)',
+  validate: (value) =>
+    /^\d{2}-\d{7}$/.test(value) || 'Invalid format (XX-XXXXXXX)',
   validateWhen: (formValues) => formValues.accountType === 'business',
 })
 ```
@@ -236,19 +241,19 @@ Control when validation runs:
   id="my-form"
   fields={fields}
   submit={handleSubmit}
-  validateOnBlur      // Validate when field loses focus
-  validateOnChange    // Validate as user types
+  validateOnBlur // Validate when field loses focus
+  validateOnChange // Validate as user types
 >
   <button type="submit">Submit</button>
 </Form>
 ```
 
-| Setting | Behavior |
-| --- | --- |
-| `validateOnBlur` | Validates when the user leaves the field |
-| `validateOnChange` | Validates on every keystroke/change |
-| Neither | Validates only on form submission |
-| Both | Validates on change and on blur |
+| Setting            | Behavior                                 |
+| ------------------ | ---------------------------------------- |
+| `validateOnBlur`   | Validates when the user leaves the field |
+| `validateOnChange` | Validates on every keystroke/change      |
+| Neither            | Validates only on form submission        |
+| Both               | Validates on change and on blur          |
 
 ---
 

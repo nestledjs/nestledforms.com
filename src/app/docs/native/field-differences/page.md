@@ -10,26 +10,26 @@ How native form fields differ from their web counterparts — component mappings
 
 Native text fields use React Native's `TextInput` component instead of HTML `<input>` elements.
 
-| Web | Native |
-| --- | --- |
-| `<input type="text">` | `<TextInput>` |
-| `<input type="email">` | `<TextInput keyboardType="email-address">` |
-| `<input type="password">` | `<TextInput secureTextEntry>` |
-| `<input type="url">` | `<TextInput keyboardType="url">` |
-| `<textarea>` | `<TextInput multiline>` |
+| Web                       | Native                                     |
+| ------------------------- | ------------------------------------------ |
+| `<input type="text">`     | `<TextInput>`                              |
+| `<input type="email">`    | `<TextInput keyboardType="email-address">` |
+| `<input type="password">` | `<TextInput secureTextEntry>`              |
+| `<input type="url">`      | `<TextInput keyboardType="url">`           |
+| `<textarea>`              | `<TextInput multiline>`                    |
 
 ### Keyboard types
 
 Native text fields automatically set the appropriate `keyboardType`:
 
-| Field type | Keyboard type |
-| --- | --- |
-| `text` | `default` |
-| `email` | `email-address` |
-| `url` | `url` |
-| `phone` | `phone-pad` |
-| `number` | `numeric` |
-| `currency` | `decimal-pad` |
+| Field type | Keyboard type   |
+| ---------- | --------------- |
+| `text`     | `default`       |
+| `email`    | `email-address` |
+| `url`      | `url`           |
+| `phone`    | `phone-pad`     |
+| `number`   | `numeric`       |
+| `currency` | `decimal-pad`   |
 
 ---
 
@@ -66,10 +66,10 @@ Web renders standard HTML date/time inputs or a custom date picker component. Na
 
 ### Platform behavior
 
-| Platform | Behavior |
-| --- | --- |
-| **iOS** | Inline spinner-style picker |
-| **Android** | Modal dialog picker |
+| Platform    | Behavior                    |
+| ----------- | --------------------------- |
+| **iOS**     | Inline spinner-style picker |
+| **Android** | Modal dialog picker         |
 
 ```shell
 npm install @react-native-community/datetimepicker
@@ -91,9 +91,9 @@ npm install react-native-phone-number-input
 
 The markdown editor behaves differently on each platform:
 
-| Platform | Behavior |
-| --- | --- |
-| **Web** | Full MDX Editor with toolbar, live preview, and image upload |
+| Platform   | Behavior                                                                 |
+| ---------- | ------------------------------------------------------------------------ |
+| **Web**    | Full MDX Editor with toolbar, live preview, and image upload             |
 | **Native** | Text input for markdown with `react-native-markdown-display` for preview |
 
 The web markdown editor is significantly more feature-rich. On native, consider using a `textArea` field for simple rich text needs.
@@ -108,7 +108,8 @@ The web theme (`tailwindTheme`) uses Tailwind CSS class strings:
 
 ```tsx
 const tailwindTheme = {
-  input: 'border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-sky-500',
+  input:
+    'border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-sky-500',
   label: 'block text-sm font-medium text-gray-700 mb-1',
   error: 'text-red-500 text-sm mt-1',
   // ...
@@ -166,22 +167,22 @@ const myTheme = createCustomTheme({
 
 ## Feature parity table
 
-| Feature | Web | Native |
-| --- | --- | --- |
-| All 24+ field types | Yes | Yes |
-| Declarative API | Yes | Yes |
-| Imperative API | Yes | Yes |
-| Conditional logic | Yes | Yes |
-| Validation (sync/async/Zod) | Yes | Yes |
-| Cross-field validation | Yes | Yes |
-| Validation groups | Yes | Yes |
-| Read-only mode | Yes | Yes |
-| Custom themes | Yes (CSS classes) | Yes (StyleSheet) |
-| Apollo search selects | Yes | Yes |
-| Markdown editor (full) | Yes | Limited |
-| Custom field components | Yes | Yes |
-| Form context hooks | Yes | Yes |
-| submitTransform | Yes | Yes |
+| Feature                     | Web               | Native           |
+| --------------------------- | ----------------- | ---------------- |
+| All 24+ field types         | Yes               | Yes              |
+| Declarative API             | Yes               | Yes              |
+| Imperative API              | Yes               | Yes              |
+| Conditional logic           | Yes               | Yes              |
+| Validation (sync/async/Zod) | Yes               | Yes              |
+| Cross-field validation      | Yes               | Yes              |
+| Validation groups           | Yes               | Yes              |
+| Read-only mode              | Yes               | Yes              |
+| Custom themes               | Yes (CSS classes) | Yes (StyleSheet) |
+| Apollo search selects       | Yes               | Yes              |
+| Markdown editor (full)      | Yes               | Limited          |
+| Custom field components     | Yes               | Yes              |
+| Form context hooks          | Yes               | Yes              |
+| submitTransform             | Yes               | Yes              |
 
 ---
 

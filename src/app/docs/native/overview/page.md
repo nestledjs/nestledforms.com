@@ -83,8 +83,7 @@ export const signupFields = [
 // Web
 import { Form } from '@nestledjs/forms'
 import { signupFields } from '../shared/form-fields'
-
-<Form id="signup" fields={signupFields} submit={handleSubmit}>
+;<Form id="signup" fields={signupFields} submit={handleSubmit}>
   <button type="submit">Sign Up</button>
 </Form>
 ```
@@ -93,8 +92,7 @@ import { signupFields } from '../shared/form-fields'
 // Native
 import { NativeForm } from '@nestledjs/forms-native'
 import { signupFields } from '../shared/form-fields'
-
-<NativeForm id="signup" fields={signupFields} submit={handleSubmit} />
+;<NativeForm id="signup" fields={signupFields} submit={handleSubmit} />
 ```
 
 ---
@@ -103,14 +101,14 @@ import { signupFields } from '../shared/form-fields'
 
 Install these packages based on which field types you use:
 
-| Dependency | Required for | Install |
-| --- | --- | --- |
-| `expo-checkbox` | Checkbox, CustomCheckbox, CheckboxGroup | `npx expo install expo-checkbox` |
-| `react-native-element-dropdown` | Select, MultiSelect, SearchSelect | `npm install react-native-element-dropdown` |
-| `@react-native-community/datetimepicker` | DatePicker, DateTimePicker, TimePicker | `npm install @react-native-community/datetimepicker` |
-| `react-native-phone-number-input` | Phone | `npm install react-native-phone-number-input` |
-| `react-native-markdown-display` | MarkdownEditor (display mode) | `npm install react-native-markdown-display` |
-| `@apollo/client` | SearchSelectApollo, SearchSelectMultiApollo | `npm install @apollo/client graphql` |
+| Dependency                               | Required for                                | Install                                              |
+| ---------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| `expo-checkbox`                          | Checkbox, CustomCheckbox, CheckboxGroup     | `npx expo install expo-checkbox`                     |
+| `react-native-element-dropdown`          | Select, MultiSelect, SearchSelect           | `npm install react-native-element-dropdown`          |
+| `@react-native-community/datetimepicker` | DatePicker, DateTimePicker, TimePicker      | `npm install @react-native-community/datetimepicker` |
+| `react-native-phone-number-input`        | Phone                                       | `npm install react-native-phone-number-input`        |
+| `react-native-markdown-display`          | MarkdownEditor (display mode)               | `npm install react-native-markdown-display`          |
+| `@apollo/client`                         | SearchSelectApollo, SearchSelectMultiApollo | `npm install @apollo/client graphql`                 |
 
 {% callout title="Only install what you need" %}
 All native dependencies are optional peer dependencies. Only install the ones for field types you actually use. The library will warn you at runtime if a required dependency is missing.
@@ -122,17 +120,17 @@ All native dependencies are optional peer dependencies. Only install the ones fo
 
 All 24+ field types from the web library are available on native:
 
-| Category | Fields | Native dependency |
-| --- | --- | --- |
-| **Text** | text, textArea, email, password, url, phone | None (phone needs `react-native-phone-number-input`) |
-| **Numeric** | number, currency | None |
-| **Selection** | select, multiSelect, enumSelect | `react-native-element-dropdown` |
-| **Radio/Checkbox** | radio, checkboxGroup | `expo-checkbox` |
-| **Search** | searchSelect, searchSelectMulti | `react-native-element-dropdown` |
-| **Search Apollo** | searchSelectApollo, searchSelectMultiApollo | `react-native-element-dropdown` + `@apollo/client` |
-| **Boolean** | checkbox, switch, customCheckbox | `expo-checkbox` (checkbox/customCheckbox), None (switch) |
-| **Date/Time** | datePicker, dateTimePicker, timePicker | `@react-native-community/datetimepicker` |
-| **Rich** | markdownEditor, content, custom, button | `react-native-markdown-display` (markdown) |
+| Category           | Fields                                      | Native dependency                                        |
+| ------------------ | ------------------------------------------- | -------------------------------------------------------- |
+| **Text**           | text, textArea, email, password, url, phone | None (phone needs `react-native-phone-number-input`)     |
+| **Numeric**        | number, currency                            | None                                                     |
+| **Selection**      | select, multiSelect, enumSelect             | `react-native-element-dropdown`                          |
+| **Radio/Checkbox** | radio, checkboxGroup                        | `expo-checkbox`                                          |
+| **Search**         | searchSelect, searchSelectMulti             | `react-native-element-dropdown`                          |
+| **Search Apollo**  | searchSelectApollo, searchSelectMultiApollo | `react-native-element-dropdown` + `@apollo/client`       |
+| **Boolean**        | checkbox, switch, customCheckbox            | `expo-checkbox` (checkbox/customCheckbox), None (switch) |
+| **Date/Time**      | datePicker, dateTimePicker, timePicker      | `@react-native-community/datetimepicker`                 |
+| **Rich**           | markdownEditor, content, custom, button     | `react-native-markdown-display` (markdown)               |
 
 ---
 
@@ -141,7 +139,11 @@ All 24+ field types from the web library are available on native:
 The same hooks work on native:
 
 ```tsx
-import { useFormContext, useFormConfig, useFormTheme } from '@nestledjs/forms-native'
+import {
+  useFormContext,
+  useFormConfig,
+  useFormTheme,
+} from '@nestledjs/forms-native'
 ```
 
 ---

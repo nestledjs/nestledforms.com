@@ -24,12 +24,12 @@ FormFieldClass.number('quantity', {
 
 ### Number-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `min` | `number` | — | Minimum allowed value |
-| `max` | `number` | — | Maximum allowed value |
-| `step` | `number` | `1` | Increment step for up/down controls |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description                         |
+| ------------- | -------- | ------- | ----------------------------------- |
+| `min`         | `number` | —       | Minimum allowed value               |
+| `max`         | `number` | —       | Maximum allowed value               |
+| `step`        | `number` | `1`     | Increment step for up/down controls |
+| `placeholder` | `string` | —       | Placeholder text                    |
 
 ### Decimal numbers
 
@@ -73,29 +73,29 @@ FormFieldClass.currency('price', {
 
 ### Currency-specific options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `currency` | `string` | `'USD'` | ISO 4217 currency code |
-| `min` | `number` | — | Minimum allowed value |
-| `max` | `number` | — | Maximum allowed value |
-| `placeholder` | `string` | — | Placeholder text |
+| Option        | Type     | Default | Description            |
+| ------------- | -------- | ------- | ---------------------- |
+| `currency`    | `string` | `'USD'` | ISO 4217 currency code |
+| `min`         | `number` | —       | Minimum allowed value  |
+| `max`         | `number` | —       | Maximum allowed value  |
+| `placeholder` | `string` | —       | Placeholder text       |
 
 ### Supported currencies
 
 The currency field supports 30+ currencies with proper symbol and formatting:
 
-| Code | Symbol | Name |
-| --- | --- | --- |
-| `USD` | $ | US Dollar |
-| `EUR` | E | Euro |
-| `GBP` | £ | British Pound |
-| `JPY` | ¥ | Japanese Yen |
-| `AUD` | A$ | Australian Dollar |
-| `CAD` | C$ | Canadian Dollar |
-| `CHF` | CHF | Swiss Franc |
-| `CNY` | ¥ | Chinese Yuan |
-| `INR` | R | Indian Rupee |
-| `BRL` | R$ | Brazilian Real |
+| Code  | Symbol | Name              |
+| ----- | ------ | ----------------- |
+| `USD` | $      | US Dollar         |
+| `EUR` | E      | Euro              |
+| `GBP` | £      | British Pound     |
+| `JPY` | ¥      | Japanese Yen      |
+| `AUD` | A$     | Australian Dollar |
+| `CAD` | C$     | Canadian Dollar   |
+| `CHF` | CHF    | Swiss Franc       |
+| `CNY` | ¥      | Chinese Yuan      |
+| `INR` | R      | Indian Rupee      |
+| `BRL` | R$     | Brazilian Real    |
 
 And many more — see the full list in the forms-core currency utilities.
 
