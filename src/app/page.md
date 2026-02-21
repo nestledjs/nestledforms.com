@@ -1,5 +1,8 @@
 ---
 title: Getting started
+nextjs:
+  metadata:
+    description: Build type-safe, validated forms in React and React Native with 24+ field types, conditional logic, theming, and Apollo GraphQL integration.
 ---
 
 Build type-safe, validated forms in React and React Native with 24+ field types, conditional logic, theming, and Apollo GraphQL integration — declaratively or imperatively. {% .lead %}

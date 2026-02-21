@@ -1,5 +1,8 @@
 ---
 title: Number fields
+nextjs:
+  metadata:
+    description: Nestled Forms numeric input fields for capturing numbers and monetary values with formatting and validation.
 ---
 
 Numeric input fields for capturing numbers and monetary values with formatting and validation. {% .lead %}

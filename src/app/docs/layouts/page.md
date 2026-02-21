@@ -1,5 +1,8 @@
 ---
 title: Layouts
+nextjs:
+  metadata:
+    description: Control how Nestled Forms fields are arranged — single column, multi-column grids, horizontal labels, and custom wrappers.
 ---
 
 Control how form fields are arranged — single column, multi-column grids, horizontal labels, and custom wrappers. {% .lead %}

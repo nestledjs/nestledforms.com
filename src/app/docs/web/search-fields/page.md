@@ -1,5 +1,8 @@
 ---
 title: Search select fields
+nextjs:
+  metadata:
+    description: Nestled Forms searchable dropdown fields with typeahead filtering — including variants that query a GraphQL API via Apollo Client.
 ---
 
 Searchable dropdown fields with typeahead filtering — including variants that query a GraphQL API via Apollo Client. {% .lead %}

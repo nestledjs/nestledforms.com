@@ -1,5 +1,8 @@
 ---
 title: Validation
+nextjs:
+  metadata:
+    description: Validate Nestled Forms fields with simple functions, Zod schemas, cross-field validation, and async checks.
 ---
 
 Every form needs validation. Nestled Forms provides multiple approaches — from simple functions to Zod schemas to cross-field validation and async checks. {% .lead %}

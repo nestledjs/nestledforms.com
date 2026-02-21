@@ -61,6 +61,26 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full bg-white dark:bg-slate-900">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: 'Nestled Forms',
+              applicationCategory: 'DeveloperApplication',
+              description:
+                'Type-safe form library for React and React Native with 24+ field types, validation, conditional logic, theming, and Apollo GraphQL integration.',
+              url: 'https://nestledforms.com',
+              operatingSystem: 'Any',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+            }),
+          }}
+        />
         <Providers>
           <Layout>{children}</Layout>
         </Providers>

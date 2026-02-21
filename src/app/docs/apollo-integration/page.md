@@ -1,5 +1,8 @@
 ---
 title: Apollo integration
+nextjs:
+  metadata:
+    description: Connect Nestled Forms fields to your GraphQL API with Apollo-powered search selects — debounced queries, loading states, and server-side filtering built in.
 ---
 
 Connect form fields directly to your GraphQL API with Apollo-powered search selects — debounced queries, loading states, and server-side filtering built in. {% .lead %}

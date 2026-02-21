@@ -1,5 +1,8 @@
 ---
 title: Date & time fields
+nextjs:
+  metadata:
+    description: Nestled Forms date picker, time picker, and datetime picker fields for capturing temporal data.
 ---
 
 Date picker, time picker, and datetime picker fields for capturing temporal data. {% .lead %}

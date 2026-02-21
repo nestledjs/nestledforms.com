@@ -1,5 +1,8 @@
 ---
 title: Core concepts
+nextjs:
+  metadata:
+    description: Understand how Nestled Forms works — the declarative and imperative dual API, FormFieldClass factory, form context, and the patterns that power the library.
 ---
 
 Understand how Nestled Forms works — the dual API, FormFieldClass factory, form context, and the patterns that make the library powerful. {% .lead %}

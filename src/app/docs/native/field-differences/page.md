@@ -1,5 +1,8 @@
 ---
 title: Field differences
+nextjs:
+  metadata:
+    description: How Nestled Forms native fields differ from their web counterparts — component mappings, styling, and platform-specific behavior.
 ---
 
 How native form fields differ from their web counterparts — component mappings, styling, and platform-specific behavior. {% .lead %}

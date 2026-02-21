@@ -1,5 +1,8 @@
 ---
 title: API reference
+nextjs:
+  metadata:
+    description: Complete reference for all exports from @nestledjs/forms, @nestledjs/forms-native, and @nestledjs/forms-core.
 ---
 
 Complete reference for all exports from `@nestledjs/forms`, `@nestledjs/forms-native`, and `@nestledjs/forms-core`. {% .lead %}

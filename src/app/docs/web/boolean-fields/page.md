@@ -1,5 +1,8 @@
 ---
 title: Boolean fields
+nextjs:
+  metadata:
+    description: Nestled Forms toggle and checkbox fields for capturing boolean values and on/off states.
 ---
 
 Toggle and checkbox fields for capturing boolean values and on/off states. {% .lead %}

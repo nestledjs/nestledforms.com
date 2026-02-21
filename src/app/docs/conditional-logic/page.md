@@ -1,5 +1,8 @@
 ---
 title: Conditional logic
+nextjs:
+  metadata:
+    description: Show, hide, require, and disable Nestled Forms fields dynamically based on the values of other fields in the form.
 ---
 
 Show, hide, require, and disable fields dynamically based on the values of other fields in the form. {% .lead %}

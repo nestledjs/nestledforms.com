@@ -1,5 +1,8 @@
 ---
 title: Selection fields
+nextjs:
+  metadata:
+    description: Nestled Forms dropdown and choice fields — single select, multi-select, radio groups, and checkbox groups for selecting from predefined options.
 ---
 
 Dropdown and choice fields for selecting from predefined options — single select, multi-select, radio groups, and checkbox groups. {% .lead %}

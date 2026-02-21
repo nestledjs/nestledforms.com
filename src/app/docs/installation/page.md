@@ -1,5 +1,8 @@
 ---
 title: Installation
+nextjs:
+  metadata:
+    description: Install @nestledjs/forms for React web or @nestledjs/forms-native for React Native and start building type-safe forms in minutes.
 ---
 
 Get Nestled Forms installed and running in your React or React Native project. {% .lead %}

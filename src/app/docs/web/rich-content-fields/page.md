@@ -1,5 +1,8 @@
 ---
 title: Rich content fields
+nextjs:
+  metadata:
+    description: Nestled Forms fields for rich text editing, static content display, fully custom components, and action buttons.
 ---
 
 Fields for rich text editing, static content display, fully custom components, and action buttons. {% .lead %}

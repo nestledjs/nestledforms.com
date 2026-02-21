@@ -1,5 +1,8 @@
 ---
 title: Theming
+nextjs:
+  metadata:
+    description: Customize the appearance of every Nestled Forms element — inputs, labels, errors, dropdowns, and more — through the theming system.
 ---
 
 Customize the appearance of every form element — inputs, labels, errors, dropdowns, and more — through the theming system. {% .lead %}

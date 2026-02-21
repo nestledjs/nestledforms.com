@@ -1,5 +1,8 @@
 ---
 title: Text fields
+nextjs:
+  metadata:
+    description: Nestled Forms text input fields for capturing string data — text, email, password, URL, phone, and textarea variants.
 ---
 
 Text input fields for capturing string data — from simple text to emails, passwords, URLs, and phone numbers. {% .lead %}

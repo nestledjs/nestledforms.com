@@ -1,5 +1,8 @@
 ---
 title: Native forms overview
+nextjs:
+  metadata:
+    description: Build forms for React Native with the same Nestled Forms API, field types, and validation system as the web — adapted for native mobile components.
 ---
 
 Build forms for React Native with the same API, field types, and validation system as the web — adapted for native mobile components. {% .lead %}
