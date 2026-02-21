@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   },
   description:
     'Build type-safe, validated forms in React and React Native with 24+ field types, conditional logic, theming, and Apollo GraphQL integration.',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
