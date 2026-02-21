@@ -140,3 +140,7 @@ Found a bug or have a feature request? Visit our [GitHub repository](https://git
 ### Join the community
 
 Connect with other developers through GitHub Discussions, browse real-world examples, and stay up to date with the latest releases.
+
+### Nestled JS
+
+Nestled Forms was originally built to power [Nestled JS](https://nestledjs.com) — a full-stack app generation platform that lets you ship production-ready React and React Native applications as fast as humanly possible, with solid AI guardrails built in. If you're looking to go beyond forms and build entire applications with the same declarative philosophy, check it out.

@@ -37,4 +37,10 @@ export const navigation = [
       { title: 'API reference', href: '/docs/api-reference' },
     ],
   },
+  {
+    title: 'Resources',
+    links: [
+      { title: 'Nestled JS', href: 'https://nestledjs.com' },
+    ],
+  },
 ]
