@@ -77,7 +77,7 @@ export function Fence({
   return (
     <Highlight
       code={code}
-      language={language}
+      language={language || 'text'}
       theme={{ plain: {}, styles: [] }}
     >
       {({ className, style, tokens, getTokenProps }) => (

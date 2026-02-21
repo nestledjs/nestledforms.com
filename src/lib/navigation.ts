@@ -39,6 +39,9 @@ export const navigation = [
   },
   {
     title: 'Resources',
-    links: [{ title: 'Nestled JS', href: 'https://nestledjs.com' }],
+    links: [
+      { title: 'AI prompting', href: '/docs/ai-prompting' },
+      { title: 'Nestled JS', href: 'https://nestledjs.com' },
+    ],
   },
 ]
