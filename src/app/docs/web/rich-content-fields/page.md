@@ -11,7 +11,7 @@ Fields for rich text editing, static content display, fully custom components, a
 
 ## MarkdownEditor
 
-A rich text editor that outputs both markdown and HTML. Powered by MDX Editor with a full toolbar.
+A rich text editor that outputs both markdown and HTML. Powered by MDX Editor with a full toolbar including a heading picker (Normal / H1 / H2 / H3).
 
 ```tsx
 FormFieldClass.markdownEditor('description', {
@@ -23,17 +23,33 @@ FormFieldClass.markdownEditor('description', {
 
 ### MarkdownEditor-specific options
 
-| Option        | Type     | Default | Description      |
-| ------------- | -------- | ------- | ---------------- |
-| `placeholder` | `string` | —       | Placeholder text |
+| Option               | Type                                  | Default                                                  | Description                                          |
+| -------------------- | ------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- |
+| `placeholder`        | `string`                              | —                                                        | Placeholder text                                     |
+| `height`             | `number`                              | `300`                                                    | Editor height in pixels                              |
+| `maxLength`          | `number`                              | —                                                        | Maximum character count                              |
+| `disabled`           | `boolean`                             | `false`                                                  | Disables the editor                                  |
+| `readOnly`           | `boolean`                             | `false`                                                  | Renders in read-only mode                            |
+| `readOnlyStyle`      | `'value' \| 'disabled'`               | `'value'`                                                | How read-only is displayed                           |
+| `outputFormat`       | `'markdown' \| 'html' \| 'both'`      | `'markdown'`                                             | Output format                                        |
+| `onHtmlChange`       | `(html: string) => void`              | —                                                        | Callback for HTML output                             |
+| `enableImageUpload`  | `boolean`                             | `false`                                                  | Enables image insertion                              |
+| `imageUploadHandler` | `(file: File) => Promise<string>`     | —                                                        | Custom upload handler                                |
+| `imageUploadMode`    | `'base64' \| 'custom' \| 'immediate'` | `'base64'`                                               | How images are stored                                |
+| `maxImageSize`       | `number`                              | `5242880`                                                | Max image size in bytes (5 MB)                       |
+| `allowedImageTypes`  | `string[]`                            | `['image/png', 'image/jpeg', 'image/gif', 'image/webp']` | Accepted image types                                 |
+| `overlayContainer`   | `HTMLElement \| null`                 | —                                                        | Container for popups (fixes modal z-index conflicts) |
+| `popupZIndex`        | `number`                              | —                                                        | Z-index override for popups                          |
+| `plugins`            | `Plugin[]`                            | —                                                        | Custom MDXEditor plugins — replaces all defaults     |
 
 ### Features
 
-- **Toolbar**: Bold, italic, headings, lists, links, code blocks, and more
-- **Dual output**: Stores both the raw markdown and rendered HTML
-- **Image upload**: Supports embedding images
-- **Live preview**: See formatted output as you type
-- **Keyboard shortcuts**: Standard markdown shortcuts (Ctrl+B for bold, etc.)
+- **Heading picker**: Choose Normal, H1, H2, or H3 from the toolbar
+- **Rich text toolbar**: Bold, italic, underline, code, lists, links
+- **Dual output**: Stores both raw markdown and rendered HTML
+- **Image upload**: Supports base64 or custom upload handlers
+- **Keyboard shortcuts**: Standard shortcuts (Ctrl+B for bold, etc.)
+- **Read-only mode**: Display content without editing
 
 ### Setup
 
@@ -49,23 +65,91 @@ Import the CSS in your application's entry point:
 import '@mdxeditor/editor/style.css'
 ```
 
-### Value format
-
-The markdown editor stores a value with both formats:
-
-```tsx
-{
-  markdown: '# Hello\n\nThis is **bold** text.',
-  html: '<h1>Hello</h1><p>This is <strong>bold</strong> text.</p>'
-}
-```
-
-Use `submitTransform` if you only need one format:
+### Image upload
 
 ```tsx
 FormFieldClass.markdownEditor('content', {
   label: 'Content',
-  submitTransform: (value) => value.markdown, // Only submit the markdown
+  enableImageUpload: true,
+  imageUploadMode: 'custom',
+  imageUploadHandler: async (file) => {
+    const formData = new FormData()
+    formData.append('image', file)
+    const { url } = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    }).then((r) => r.json())
+    return url
+  },
+})
+```
+
+### Dual format output
+
+When `outputFormat` is `'both'`, the form data contains two keys: the field name for the raw markdown and `{fieldName}_html` for the rendered HTML.
+
+```tsx
+FormFieldClass.markdownEditor('content', {
+  label: 'Content',
+  outputFormat: 'both',
+  onHtmlChange: (html) => setRenderedHtml(html),
+})
+
+// Form data contains:
+// content      → "# Hello\n\nThis is **bold**"
+// content_html → "<h1>Hello</h1><p>This is <strong>bold</strong></p>"
+```
+
+### Custom plugins
+
+Pass `plugins` to take full control of the MDXEditor plugin set. When provided it replaces all defaults — you get exactly what you pass in.
+
+```tsx
+import {
+  headingsPlugin,
+  listsPlugin,
+  tablePlugin,
+  toolbarPlugin,
+  BlockTypeSelect,
+  BoldItalicUnderlineToggles,
+  InsertTable,
+  Separator,
+} from '@mdxeditor/editor'
+
+FormFieldClass.markdownEditor('content', {
+  label: 'Content',
+  plugins: [
+    headingsPlugin(),
+    listsPlugin(),
+    tablePlugin(),
+    toolbarPlugin({
+      toolbarContents: () => (
+        <>
+          <BlockTypeSelect />
+          <Separator />
+          <BoldItalicUnderlineToggles />
+          <Separator />
+          <InsertTable />
+        </>
+      ),
+    }),
+  ],
+})
+```
+
+### Modal z-index conflicts
+
+If the editor is inside a modal and link/image dialogs don't appear correctly, use one of these fixes:
+
+```tsx
+// Option 1: render popups inside your modal container
+FormFieldClass.markdownEditor('content', {
+  overlayContainer: document.getElementById('my-modal'),
+})
+
+// Option 2: raise the popup z-index above your modal
+FormFieldClass.markdownEditor('content', {
+  popupZIndex: 10000,
 })
 ```
 
@@ -264,12 +348,10 @@ const fields = [
 FormFieldClass.markdownEditor('article', {
   label: 'Article Body',
   required: true,
+  maxLength: 10000,
   validate: (value) => {
-    if (!value?.markdown || value.markdown.length < 100) {
+    if (!value || value.length < 100) {
       return 'Article must be at least 100 characters'
-    }
-    if (value.markdown.length > 10000) {
-      return 'Article must be less than 10,000 characters'
     }
     return true
   },
