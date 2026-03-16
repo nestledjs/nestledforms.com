@@ -29,7 +29,15 @@ yarn add @nestledjs/forms
 
 ### Peer dependencies
 
-The web forms package requires React as a peer dependency. If you're using features like the markdown editor or Apollo search selects, install their optional dependencies as needed.
+The following packages are required peer dependencies:
+
+```shell
+npm install react react-hook-form zod @hookform/resolvers
+```
+
+With pnpm or npm v7+, peer dependencies are installed automatically when you add `@nestledjs/forms`. On npm v6 or Yarn v1, install them explicitly with the command above.
+
+If you're using features like the markdown editor or Apollo search selects, install their optional dependencies as needed.
 
 ### Basic setup
 
@@ -92,6 +100,16 @@ npm install @nestledjs/forms-native
 # or
 pnpm add @nestledjs/forms-native
 ```
+
+### Peer dependencies
+
+The following packages are required peer dependencies:
+
+```shell
+npm install react react-native react-hook-form zod @hookform/resolvers
+```
+
+With pnpm or npm v7+, peer dependencies are installed automatically when you add `@nestledjs/forms-native`. On npm v6 or Yarn v1, install them explicitly with the command above.
 
 ### Optional native dependencies
 
