@@ -4,6 +4,7 @@
 
 | Field                   | Value                                  |
 | ----------------------- | -------------------------------------- |
+| `repo_name`             | `nestledforms.com`                     |
 | `framework`             | `nestled`                              |
 | `github_slug`           | `nestledjs/nestledforms.com`           |
 | `base_branch`           | `main`                                 |
