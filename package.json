@@ -64,7 +64,7 @@
     "fast-glob": "^3.2.12",
     "flexsearch": "^0.7.31",
     "js-yaml": "^4.1.1",
-    "next": "^15.0.0",
+    "next": "^15.5.19",
     "next-themes": "^0.4.0",
     "prism-react-renderer": "^2.0.6",
     "react": "^19.0.0",
@@ -77,7 +77,7 @@
   "devDependencies": {
     "concurrently": "^9.2.1",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
+    "eslint-config-next": "^15.5.19",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
@@ -97,7 +97,9 @@
       "tar": ">=7.5.8",
       "glob": ">=10.5.0",
       "lodash": ">=4.17.23",
-      "minimatch": ">=10.2.1"
+      "minimatch": ">=10.2.1",
+      "shell-quote": ">=1.8.4",
+      "postcss": ">=8.5.10"
     }
   }
 }
