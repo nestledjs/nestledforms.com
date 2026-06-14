@@ -10,11 +10,11 @@
 
 GitHub Dependabot reports **15 open alerts** (1 critical, 7 high, 5 moderate, 2 low) on `nestledforms.com`. Verified breakdown from the live Dependabot API:
 
-| Severity | Package | Alerts | Vulnerable range | Fixed in |
-| --- | --- | --- | --- | --- |
-| critical | `shell-quote` (dev, transitive) | 1 | `>=1.1.0, <=1.8.3` | **1.8.4** |
-| high / moderate / low | `next` (runtime, direct) | 13 | various, all `< 15.5.18` or lower | **15.5.18** (min to clear all); latest patch **15.5.19** |
-| moderate | `postcss` (runtime, transitive) | 1 | `< 8.5.10` | **8.5.10** |
+| Severity              | Package                         | Alerts | Vulnerable range                  | Fixed in                                                 |
+| --------------------- | ------------------------------- | ------ | --------------------------------- | -------------------------------------------------------- |
+| critical              | `shell-quote` (dev, transitive) | 1      | `>=1.1.0, <=1.8.3`                | **1.8.4**                                                |
+| high / moderate / low | `next` (runtime, direct)        | 13     | various, all `< 15.5.18` or lower | **15.5.18** (min to clear all); latest patch **15.5.19** |
+| moderate              | `postcss` (runtime, transitive) | 1      | `< 8.5.10`                        | **8.5.10**                                               |
 
 Current installed versions: `next@15.5.12`, `shell-quote@1.8.3`, `postcss@8.5.6` **and** `postcss@8.4.31` (two instances in the lockfile, both below 8.5.10).
 
@@ -23,6 +23,7 @@ The fix is entirely a dependency/lockfile bump — **no source-code changes** ar
 ## Implementation steps
 
 1. **Create the branch.** From an up-to-date `develop`:
+
    ```bash
    cd "$(git rev-parse --show-toplevel)"
    git fetch origin && git checkout develop && git pull --ff-only
@@ -33,6 +34,7 @@ The fix is entirely a dependency/lockfile bump — **no source-code changes** ar
    - Rationale: `next ≥ 15.5.18` is required to clear **all** next alerts (alert GHSA-26hh-7cqf-hhc6 patches at 15.5.18; the rest at 15.5.16). 15.5.19 is the latest published 15.5.x patch. Latest overall is 16.2.9 — **deliberately not used**, to avoid a major-version framework jump per the acceptance criteria.
 
 3. **Add transitive overrides** to the existing `pnpm.overrides` object in `package.json` (do not create a new block — extend the current one that holds `tar`, `glob`, `lodash`, `minimatch`):
+
    ```jsonc
    "overrides": {
      "tar": ">=7.5.8",
@@ -43,14 +45,18 @@ The fix is entirely a dependency/lockfile bump — **no source-code changes** ar
      "postcss": ">=8.5.10"
    }
    ```
+
    - `shell-quote >=1.8.4` clears the critical alert (GHSA-w7jw-789q-3m8p). It is a dev/transitive dependency; the override applies regardless of which package pulls it in.
    - `postcss >=8.5.10` clears the moderate alert (GHSA-qx2v-qp2m-jg93) and forces **both** lockfile instances (8.5.6 and 8.4.31) to a patched 8.5.x. This is a same-major bump, backward-compatible within 8.x — safe for the Tailwind 4 / `@tailwindcss/postcss` build pipeline.
 
 4. **Regenerate the lockfile and install:**
+
    ```bash
    pnpm install
    ```
+
    Confirm the resolved versions:
+
    ```bash
    pnpm why next        # expect 15.5.19 (or latest 15.5.x >= 15.5.18)
    pnpm why shell-quote # expect >= 1.8.4, no 1.8.3 left
@@ -58,6 +64,7 @@ The fix is entirely a dependency/lockfile bump — **no source-code changes** ar
    ```
 
 5. **Sanity-check the local audit:**
+
    ```bash
    pnpm audit --audit-level=low   # expect no shell-quote / next / postcss findings
    ```
