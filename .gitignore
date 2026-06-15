@@ -96,3 +96,6 @@ temp/
 # TypeScript build cache
 tsconfig.tsbuildinfo
 .claude/**
+
+# Generated pipeline run logs
+agents/pipeline/output/
