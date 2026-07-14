@@ -297,18 +297,43 @@ const fields = [
 
 Apollo is just the built-in adapter. You can back the same search select fields with any data layer — urql, TanStack Query, or plain `fetch` — by implementing the `UseSearchQuery` hook type from `@nestledjs/forms-core` and passing it to `<SearchQueryProvider>`. With a custom adapter, `@apollo/client` never needs to be installed.
 
-The adapter is a React hook with this signature:
+The adapter is a React hook typed as `UseSearchQuery`: it receives the field's GraphQL document (plus optional `variables`) and returns `{ data, loading, refetch }`, where `refetch(variables)` resolves to `{ data }`. A minimal REST-backed implementation:
 
 ```tsx
-import type { UseSearchQuery } from '@nestledjs/forms-core'
+import type { SearchQueryResult, UseSearchQuery } from '@nestledjs/forms-core'
+import { useCallback, useEffect, useState } from 'react'
 
-type UseSearchQuery = (
-  document, // the GraphQL document from the field definition
-  options?: { variables?: Record<string, unknown> },
-) => {
-  data: TData | undefined
-  loading: boolean
-  refetch: (variables?) => Promise<{ data?: TData }>
+export const useMySearchQuery: UseSearchQuery = (document, options) => {
+  const [state, setState] = useState<SearchQueryResult>({
+    data: undefined,
+    loading: true,
+    refetch: async () => ({}),
+  })
+
+  const fetchData = useCallback(
+    async (variables?: Record<string, unknown>) => {
+      const response = await fetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: String(document), variables }),
+      })
+      const { data } = await response.json()
+      return { data }
+    },
+    [document],
+  )
+
+  useEffect(() => {
+    let active = true
+    fetchData(options?.variables).then(({ data }) => {
+      if (active) setState({ data, loading: false, refetch: fetchData })
+    })
+    return () => {
+      active = false
+    }
+  }, [fetchData])
+
+  return state
 }
 ```
 

@@ -101,11 +101,13 @@ Then wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms/apollo`,
 import { ApolloProvider } from '@apollo/client/react'
 import { ApolloSearchProvider } from '@nestledjs/forms/apollo'
 
-;<ApolloProvider client={client}>
-  <ApolloSearchProvider>
-    <App />
-  </ApolloSearchProvider>
-</ApolloProvider>
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <ApolloProvider client={client}>
+      <ApolloSearchProvider>{children}</ApolloSearchProvider>
+    </ApolloProvider>
+  )
+}
 ```
 
 The main `@nestledjs/forms` bundle never imports `@apollo/client` — only the `/apollo` subpath does. You can also back search selects with a different data layer entirely; see [Apollo integration → Custom adapters](/docs/apollo-integration#custom-adapters).
