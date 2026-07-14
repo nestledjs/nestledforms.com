@@ -158,6 +158,12 @@ FormFieldClass.phone('phone', {
 
 The phone field provides a country code selector and automatically formats the number based on the selected country. It uses `react-native-phone-number-input` on native and a built-in phone input component on web.
 
+When used declaratively via the `fields` array (as above), the phone field is lazy-loaded automatically — its ~150 KB of libphonenumber country metadata stays out of the main bundle. If you need the component directly, import it from the dedicated subpath (it is no longer exported from `@nestledjs/forms`):
+
+```tsx
+import { PhoneField } from '@nestledjs/forms/phone'
+```
+
 ### Phone-specific options
 
 | Option           | Type     | Default | Description          |

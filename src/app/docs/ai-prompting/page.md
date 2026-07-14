@@ -147,7 +147,8 @@ Fields:
 - Due date (datePicker, required)
 - Description (textArea)
 
-Assume the app is already wrapped in ApolloProvider.
+Assume the app is already wrapped in ApolloProvider and in
+ApolloSearchProvider from '@nestledjs/forms/apollo'.
 Write the GraphQL query with a $search variable.
 Show how to configure the Apollo search select with:
 query, searchVariable, labelField, valueField, and debounceMs.

@@ -7,6 +7,10 @@ nextjs:
 
 Connect form fields directly to your GraphQL API with Apollo-powered search selects — debounced queries, loading states, and server-side filtering built in. {% .lead %}
 
+{% callout type="warning" title="Breaking change: Apollo is now an opt-in adapter" %}
+The main `@nestledjs/forms` bundle no longer contains or imports `@apollo/client`. To use `searchSelectApollo` or `searchSelectMultiApollo`, wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms/apollo`, placed inside your existing `<ApolloProvider>`. Without it, Apollo search fields throw an error at render time with these setup instructions. Apps that don't use Apollo fields no longer need `@apollo/client` installed at all.
+{% /callout %}
+
 ---
 
 ## Setup
@@ -17,10 +21,14 @@ Install Apollo Client and GraphQL:
 npm install @apollo/client graphql
 ```
 
-Ensure your app is wrapped in an `ApolloProvider`:
+Both Apollo Client v3 and v4 are supported.
+
+Wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms/apollo`, placed inside your existing `<ApolloProvider>`:
 
 ```tsx
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client/react'
+import { ApolloSearchProvider } from '@nestledjs/forms/apollo'
 
 const client = new ApolloClient({
   uri: 'https://your-api.com/graphql',
@@ -30,11 +38,23 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <MyForm />
+      <ApolloSearchProvider>
+        <MyForm />
+      </ApolloSearchProvider>
     </ApolloProvider>
   )
 }
 ```
+
+On React Native, import the same component from `@nestledjs/forms-native/apollo`:
+
+```tsx
+import { ApolloSearchProvider } from '@nestledjs/forms-native/apollo'
+```
+
+Native Apollo search fields are now fully functional, including server-side search — earlier releases shipped non-working stubs.
+
+The `@nestledjs/forms/apollo` subpath is the only entry point that imports `@apollo/client` — the main `@nestledjs/forms` import stays Apollo-free, so `@apollo/client` remains an optional dependency.
 
 ---
 
@@ -273,9 +293,49 @@ const fields = [
 
 ---
 
+## Custom adapters
+
+Apollo is just the built-in adapter. You can back the same search select fields with any data layer — urql, TanStack Query, or plain `fetch` — by implementing the `UseSearchQuery` hook type from `@nestledjs/forms-core` and passing it to `<SearchQueryProvider>`. With a custom adapter, `@apollo/client` never needs to be installed.
+
+The adapter is a React hook with this signature:
+
+```tsx
+import type { UseSearchQuery } from '@nestledjs/forms-core'
+
+type UseSearchQuery = (
+  document, // the GraphQL document from the field definition
+  options?: { variables?: Record<string, unknown> },
+) => {
+  data: TData | undefined
+  loading: boolean
+  refetch: (variables?) => Promise<{ data?: TData }>
+}
+```
+
+Define the hook at module level (not inline) and make sure the returned `data` is referentially stable between renders unless the result actually changed — GraphQL clients guarantee this, and hand-rolled adapters must too, or consuming fields will re-render in a loop.
+
+Then provide it to your app:
+
+```tsx
+import { SearchQueryProvider } from '@nestledjs/forms-core'
+import { useMySearchQuery } from './my-search-adapter'
+
+function App() {
+  return (
+    <SearchQueryProvider useSearchQuery={useMySearchQuery}>
+      <MyForm />
+    </SearchQueryProvider>
+  )
+}
+```
+
+`searchSelectApollo` and `searchSelectMultiApollo` fields will now fetch their options through your hook instead of Apollo Client.
+
+---
+
 ## Without Apollo
 
-If you don't use Apollo Client, use the standard `searchSelect` and `searchSelectMulti` fields with static options:
+If you don't need server-side search at all, use the standard `searchSelect` and `searchSelectMulti` fields with static options:
 
 ```tsx
 FormFieldClass.searchSelect('country', {
@@ -284,4 +344,4 @@ FormFieldClass.searchSelect('country', {
 })
 ```
 
-For custom async search without Apollo, use a `custom` field with your own search implementation.
+For server-side search backed by a client other than Apollo, see [Custom adapters](#custom-adapters) above.

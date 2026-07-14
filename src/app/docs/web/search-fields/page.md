@@ -96,9 +96,11 @@ FormFieldClass.searchSelectApollo('userId', {
 4. When the user selects an option, the value is stored
 5. Clearing the selection triggers a data refetch
 
-{% callout title="Apollo Provider required" %}
-Your application must be wrapped in an `ApolloProvider` for Apollo search selects to work. The field will not render correctly without a configured Apollo Client.
+{% callout type="warning" title="ApolloSearchProvider required" %}
+Wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms/apollo`, placed inside your existing `<ApolloProvider>`. Apollo search fields throw a setup error at render time if the provider is missing. Both Apollo Client v3 and v4 are supported, and search selects can also run on a non-Apollo data layer — see [Apollo integration](/docs/apollo-integration) for setup and custom adapters.
 {% /callout %}
+
+These fields also work on React Native via `@nestledjs/forms-native`, using `<ApolloSearchProvider>` from `@nestledjs/forms-native/apollo` — including server-side search.
 
 ---
 

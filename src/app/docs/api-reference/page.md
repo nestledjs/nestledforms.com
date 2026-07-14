@@ -47,6 +47,40 @@ import { RenderFormField } from '@nestledjs/forms'
 | ------- | ----------- | -------- | -------------------------------------- |
 | `field` | `FormField` | Yes      | Field definition from `FormFieldClass` |
 
+### ApolloSearchProvider
+
+```tsx
+import { ApolloSearchProvider } from '@nestledjs/forms/apollo'
+// or '@nestledjs/forms-native/apollo' / '@nestledjs/forms-core/apollo'
+```
+
+Enables `searchSelectApollo` and `searchSelectMultiApollo` fields. Place inside your existing `<ApolloProvider>`. Works with `@apollo/client` v3 and v4. The `/apollo` subpath is the only entry point that imports `@apollo/client`.
+
+| Prop       | Type        | Required | Description           |
+| ---------- | ----------- | -------- | --------------------- |
+| `children` | `ReactNode` | Yes      | Your app or form tree |
+
+### SearchQueryProvider
+
+```tsx
+import { SearchQueryProvider } from '@nestledjs/forms-core'
+```
+
+Backs Apollo search select fields with a custom data layer (urql, TanStack Query, fetch) instead of Apollo Client.
+
+| Prop             | Type             | Required | Description                             |
+| ---------------- | ---------------- | -------- | --------------------------------------- |
+| `useSearchQuery` | `UseSearchQuery` | Yes      | Hook that executes the field's document |
+| `children`       | `ReactNode`      | Yes      | Your app or form tree                   |
+
+### PhoneField
+
+```tsx
+import { PhoneField } from '@nestledjs/forms/phone'
+```
+
+Direct import of the phone field component. It lives on its own subpath (no longer exported from `@nestledjs/forms`) to keep libphonenumber's ~150 KB metadata out of the main bundle; declarative usage via `FormFieldClass.phone()` lazy-loads it automatically.
+
 ---
 
 ## FormFieldClass factory methods
@@ -208,6 +242,27 @@ const theme = useFormTheme()
 // theme.input, theme.label, theme.error, etc.
 ```
 
+### useNativeFormSubmit
+
+```tsx
+import { useNativeFormSubmit } from '@nestledjs/forms-native'
+
+const submitForm = useNativeFormSubmit()
+// (() => Promise<void>) | null — null outside a NativeForm
+
+<Pressable onPress={() => submitForm?.()} />
+```
+
+Returns `NativeForm`'s submit trigger for custom submit buttons: runs validation, applies each field's `submitTransform`, then calls the form's `submit` prop.
+
+### useApolloSearchQuery
+
+```tsx
+import { useApolloSearchQuery } from '@nestledjs/forms/apollo'
+```
+
+The Apollo implementation of `UseSearchQuery` used by `ApolloSearchProvider`. Useful as a reference when writing a custom adapter.
+
 ---
 
 ## Theme utilities
@@ -287,6 +342,23 @@ import type { FormProps } from '@nestledjs/forms'
 // Props interface for the Form component
 ```
 
+### UseSearchQuery
+
+```tsx
+import type { UseSearchQuery } from '@nestledjs/forms-core'
+
+type UseSearchQuery = <TData = any>(
+  document: DocumentNode | TypedDocumentNode<TData>,
+  options?: { variables?: Record<string, unknown> },
+) => {
+  data: TData | undefined
+  loading: boolean
+  refetch: (variables?: Record<string, unknown>) => Promise<{ data?: TData }>
+}
+```
+
+The hook contract for custom search query adapters passed to `SearchQueryProvider`. The returned `data` must be referentially stable between renders unless the result changed.
+
 ---
 
 ## Validation utilities
@@ -298,6 +370,20 @@ import {
   validateGroup, // Validate a specific validation group
 } from '@nestledjs/forms'
 ```
+
+---
+
+## Submit transform utilities
+
+```tsx
+import {
+  singleSelectSubmitTransform, // Option object → ID string
+  multiSelectSubmitTransform, // Option objects → ID string array
+  resolveSubmitTransform, // Field's explicit transform, or its per-type default
+} from '@nestledjs/forms-core'
+```
+
+Applied automatically at submit time for `searchSelectApollo`, `searchSelectMultiApollo`, `multiSelect`, and `searchSelectMulti` fields. An explicit `submitTransform` on the field always wins. Still re-exported from their previous locations.
 
 ---
 
@@ -321,4 +407,15 @@ import {
   formatDateTime, // Format a datetime value
   formatTime, // Format a time value
 } from '@nestledjs/forms'
+```
+
+Timezone-safe helpers for converting between `Date` objects and local date strings (used internally by the date pickers to avoid cross-timezone date corruption):
+
+```tsx
+import {
+  parseLocalDate, // 'YYYY-MM-DD' string → Date in local time
+  formatLocalDate, // Date → 'YYYY-MM-DD' string in local time
+  parseLocalDateTime, // 'YYYY-MM-DDTHH:mm' string → Date in local time
+  formatLocalDateTime, // Date → 'YYYY-MM-DDTHH:mm' string in local time
+} from '@nestledjs/forms-core'
 ```
