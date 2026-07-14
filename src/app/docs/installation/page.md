@@ -59,6 +59,20 @@ export function MyForm() {
 }
 ```
 
+### Subpath exports
+
+Optional features live behind subpath exports so the main bundle stays small (~114 KB, down from 414 KB):
+
+| Subpath                     | Exports                                        | Purpose                                    |
+| --------------------------- | ---------------------------------------------- | ------------------------------------------ |
+| `@nestledjs/forms/apollo`   | `ApolloSearchProvider`, `useApolloSearchQuery` | Apollo adapter for GraphQL search selects  |
+| `@nestledjs/forms/phone`    | `PhoneField`                                   | Direct import of the phone field component |
+| `@nestledjs/forms/markdown` | Markdown editor component                      | Direct import of the markdown editor       |
+
+{% callout type="warning" title="Breaking change: PhoneField import moved" %}
+`PhoneField` is no longer exported from `@nestledjs/forms` — import it from `@nestledjs/forms/phone` instead. Declarative usage via the `fields` array is unaffected: `PhoneField` is lazy-loaded automatically, keeping ~150 KB of libphonenumber metadata out of the main bundle.
+{% /callout %}
+
 ### Optional: Markdown editor
 
 If you plan to use the `markdownEditor` field type, install the MDX editor:
@@ -75,13 +89,28 @@ import '@mdxeditor/editor/style.css'
 
 ### Optional: Apollo GraphQL search selects
 
-If you plan to use `searchSelectApollo` or `searchSelectMultiApollo`, install Apollo Client:
+If you plan to use `searchSelectApollo` or `searchSelectMultiApollo`, install Apollo Client (v3 or v4 — both are supported):
 
 ```shell
 npm install @apollo/client graphql
 ```
 
-Your application must be wrapped in an `ApolloProvider` for these fields to work.
+Then wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms/apollo`, placed inside your existing `<ApolloProvider>`:
+
+```tsx
+import { ApolloProvider } from '@apollo/client/react'
+import { ApolloSearchProvider } from '@nestledjs/forms/apollo'
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <ApolloProvider client={client}>
+      <ApolloSearchProvider>{children}</ApolloSearchProvider>
+    </ApolloProvider>
+  )
+}
+```
+
+The main `@nestledjs/forms` bundle never imports `@apollo/client` — only the `/apollo` subpath does. You can also back search selects with a different data layer entirely; see [Apollo integration → Custom adapters](/docs/apollo-integration#custom-adapters).
 
 ---
 
@@ -135,6 +164,8 @@ npm install react-native-markdown-display
 npm install @apollo/client graphql
 ```
 
+For Apollo search selects, also wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms-native/apollo` (inside your `<ApolloProvider>`), the same as on web.
+
 ### Basic setup
 
 ```tsx
@@ -164,6 +195,8 @@ Nestled Forms is structured as three packages:
 | `@nestledjs/forms-native` | React Native components, native theme                 | `forms-core` |
 
 You never need to install `@nestledjs/forms-core` directly — it's included as a dependency of both `@nestledjs/forms` and `@nestledjs/forms-native`. All exports from `forms-core` (like `FormFieldClass`, types, hooks) are re-exported from both platform packages.
+
+All three packages expose the Apollo adapter under an `/apollo` subpath (`@nestledjs/forms/apollo`, `@nestledjs/forms-native/apollo`, `@nestledjs/forms-core/apollo`), so `@apollo/client` is only pulled in where you explicitly import it.
 
 ---
 

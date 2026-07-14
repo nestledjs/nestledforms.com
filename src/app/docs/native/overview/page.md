@@ -100,6 +100,42 @@ import { signupFields } from '../shared/form-fields'
 
 ---
 
+## Form submission
+
+A `ButtonField` with `type: 'submit'` triggers the full submit flow: validation runs, each field's `submitTransform` is applied, and the form's `submit` prop is called. Submit buttons automatically disable and show a loading state while submitting.
+
+```tsx
+const fields = [
+  FormFieldClass.text('name', { label: 'Name', required: true }),
+  FormFieldClass.button('save', { label: 'Save', type: 'submit' }),
+]
+```
+
+{% callout title="Previously a known gap" %}
+In earlier releases, `NativeForm`'s `submit` prop was never invoked. Submission now works end to end, native text fields honor form-level `defaultValues` and `reset()`, and the native date/datetime pickers are timezone-safe (they previously corrupted dates across timezones).
+{% /callout %}
+
+### Custom submit buttons: useNativeFormSubmit
+
+For your own button components, the `useNativeFormSubmit()` hook returns the form's submit trigger. It returns `null` outside a `NativeForm`.
+
+```tsx
+import { Pressable, Text } from 'react-native'
+import { useNativeFormSubmit } from '@nestledjs/forms-native'
+
+function SaveButton() {
+  const submitForm = useNativeFormSubmit()
+
+  return (
+    <Pressable onPress={() => submitForm?.()}>
+      <Text>Save</Text>
+    </Pressable>
+  )
+}
+```
+
+---
+
 ## Optional dependencies
 
 Install these packages based on which field types you use:
@@ -116,6 +152,8 @@ Install these packages based on which field types you use:
 {% callout title="Only install what you need" %}
 All native dependencies are optional peer dependencies. Only install the ones for field types you actually use. The library will warn you at runtime if a required dependency is missing.
 {% /callout %}
+
+For Apollo search selects, also wrap your app with `<ApolloSearchProvider>` from `@nestledjs/forms-native/apollo`, placed inside your `<ApolloProvider>`. Native Apollo search fields are now fully functional, including server-side search — earlier releases shipped non-working stubs. See [Apollo integration](/docs/apollo-integration) for details.
 
 ---
 

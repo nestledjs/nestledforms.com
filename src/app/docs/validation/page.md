@@ -40,6 +40,11 @@ FormFieldClass.email('email', {
 })
 ```
 
+`required` works reliably in every configuration, including mixed forms where other fields use Zod schemas. Two edge cases worth knowing:
+
+- `0` counts as a filled value for required number fields
+- `false` fails a required checkbox — required checkboxes have must-be-checked semantics
+
 ### Custom required message
 
 ```tsx
@@ -51,6 +56,8 @@ FormFieldClass.email('email', {
   },
 })
 ```
+
+The `errorMessages.required` override is honored for every field type and validation configuration.
 
 ### Conditional required
 
@@ -216,6 +223,22 @@ function StepNavigation({ currentStep, onNext }) {
 }
 ```
 
+### Scoping the form to the active group
+
+Pass `validationGroup` to the `Form` itself to scope validation to the current step — only fields in the active group are validated, so fields on other steps can't block submission:
+
+```tsx
+<Form
+  id="multi-step-form"
+  validationGroups={['step1', 'step2', 'step3']}
+  validationGroup={`step${currentStep}`}
+  fields={fields}
+  submit={handleSubmit}
+>
+  <button type="submit">Next</button>
+</Form>
+```
+
 ---
 
 ## Conditional validation
@@ -301,6 +324,27 @@ FormFieldClass.email('email', {
     required: 'We need your email to create your account',
   },
 })
+```
+
+---
+
+## Error display and accessibility
+
+Web forms render with `noValidate`, so the library's themed error messages always show instead of the browser's native validation bubbles. Errors are announced to screen readers via `role="alert"`, and invalid inputs receive `aria-invalid` and `aria-describedby` pointing at their error message.
+
+---
+
+## Default submit transforms
+
+Selection fields that store option objects are automatically converted to ID strings at submit time. Default `submitTransform`s are applied for `searchSelectApollo`, `searchSelectMultiApollo`, `multiSelect`, and `searchSelectMulti` — an explicit `submitTransform` on the field still wins.
+
+The helpers backing this behavior are exported from `@nestledjs/forms-core` (and re-exported from their previous locations):
+
+```tsx
+import {
+  singleSelectSubmitTransform,
+  multiSelectSubmitTransform,
+} from '@nestledjs/forms-core'
 ```
 
 ---

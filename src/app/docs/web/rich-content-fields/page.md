@@ -100,6 +100,10 @@ FormFieldClass.markdownEditor('content', {
 // content_html → "<h1>Hello</h1><p>This is <strong>bold</strong></p>"
 ```
 
+{% callout title="HTML output is sanitized" %}
+The `_html` output is HTML-escaped, and link/image URLs are filtered to safe schemes (`http`, `https`, and `mailto` only), so script injection through markdown content is blocked.
+{% /callout %}
+
 ### Custom plugins
 
 Pass `plugins` to take full control of the MDXEditor plugin set. When provided it replaces all defaults — you get exactly what you pass in.
