@@ -14,6 +14,7 @@ export const navigation = [
       { title: 'Number fields', href: '/docs/web/number-fields' },
       { title: 'Selection fields', href: '/docs/web/selection-fields' },
       { title: 'Search select fields', href: '/docs/web/search-fields' },
+      { title: 'Async search selects', href: '/docs/web/async-select' },
       { title: 'Boolean fields', href: '/docs/web/boolean-fields' },
       { title: 'Date & time fields', href: '/docs/web/date-time-fields' },
       { title: 'Rich content fields', href: '/docs/web/rich-content-fields' },
@@ -30,6 +31,7 @@ export const navigation = [
     title: 'Advanced',
     links: [
       { title: 'Validation', href: '/docs/validation' },
+      { title: 'Localization', href: '/docs/localization' },
       { title: 'Conditional logic', href: '/docs/conditional-logic' },
       { title: 'Theming', href: '/docs/theming' },
       { title: 'Layouts', href: '/docs/layouts' },
@@ -41,6 +43,7 @@ export const navigation = [
     title: 'Resources',
     links: [
       { title: 'AI prompting', href: '/docs/ai-prompting' },
+      { title: 'Changelog', href: '/docs/changelog' },
       { title: 'Nestled JS', href: 'https://nestledjs.com' },
     ],
   },
