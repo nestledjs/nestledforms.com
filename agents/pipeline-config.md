@@ -31,7 +31,7 @@ No SonarCloud on this repo — quality gates are the Intelligence Check plus can
 | `source_system`     | `linear`                                                                                                                                         |
 | Canonical lifecycle | `https://raw.githubusercontent.com/pirateandfox/qalatra-prompts/develop/linear-pipeline.md` — state IDs, GraphQL patterns, turn-taking, identity |
 | `linear_project_id` | `0fcd3445-0fde-4984-b54d-7dd073415905` (Nestledforms.com)                                                                                        |
-| API token           | `~/.config/qalatra/secrets.md` → `SHI_LINEAR=` (authors as Shi)                                                                                  |
+| API token           | `secret get SHI_LINEAR` (authors as Shi)                                                                                                         |
 | FD task reference   | the issue's `FlightDesk` attachment                                                                                                              |
 
 This pipeline only processes issues whose Linear project is `0fcd3445-0fde-4984-b54d-7dd073415905`. Never mutate issues
