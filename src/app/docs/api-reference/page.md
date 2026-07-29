@@ -221,6 +221,52 @@ const {
 } = useFormContext()
 ```
 
+### useFormValue
+
+Reactively read a single field's value from any component inside `<Form>`.
+
+```tsx
+import { useFormValue } from '@nestledjs/forms'
+
+function Mirror() {
+  const answer = useFormValue<string>('answer')
+  return <p>You picked: {answer}</p>
+}
+```
+
+{% callout type="warning" title="Don't use form.watch() to read during render" %}
+`form.watch(name)` compiles, returns the right value on first render, and then
+silently never updates — no error, no warning, no type error. It re-renders only the
+component that owns `useForm()`, which is `<Form>` itself; `<Form>` passes `children`
+straight through, so React reuses that element reference and skips reconciling the
+subtree. Use `useFormValue` instead. The callback form, `form.watch(cb)`, is fine.
+{% /callout %}
+
+### useFormValues
+
+The whole-form counterpart. Re-renders on any change, so prefer `useFormValue` when you
+only need one field.
+
+```tsx
+import { useFormValues } from '@nestledjs/forms'
+
+const values = useFormValues()
+```
+
+### useWatch
+
+react-hook-form's primitive, re-exported so you subscribe through the same instance
+`<Form>` uses. `react-hook-form` is a peer dependency — under pnpm's isolated
+`node_modules` an app that doesn't depend on it directly cannot resolve it, and adding
+it risks a second copy with a mismatched version.
+
+```tsx
+import { useWatch, useFormContext } from '@nestledjs/forms'
+
+const form = useFormContext()
+const answer = useWatch({ control: form.control, name: 'answer' })
+```
+
 ### useFormConfig
 
 ```tsx

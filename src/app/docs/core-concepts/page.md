@@ -240,6 +240,47 @@ The context provides:
 
 ---
 
+## Reading values reactively
+
+To render from a field's value — a summary line, a conditional section, a custom field
+reflecting a sibling's answer — use `useFormValue`. It subscribes the component that
+calls it, so it re-renders wherever you use it.
+
+```tsx
+import { Form, useFormValue } from '@nestledjs/forms'
+
+function Mirror() {
+  const answer = useFormValue<string>('answer')
+  return <p>You picked: {answer}</p>
+}
+
+;<Form
+  id="quiz"
+  submit={handleSubmit}
+  defaultValues={{ answer: '' }}
+  fields={fields}
+>
+  <Mirror />
+</Form>
+```
+
+Use `useFormValues()` to read the whole form.
+
+{% callout type="warning" title="Don't use form.watch() to read during render" %}
+`form.watch(name)` compiles, returns the correct value on first render, and then
+silently never updates — no error, no warning, no type error.
+
+`watch()` re-renders only the component that owns `useForm()`, which is `Form` itself.
+`Form` passes `children` straight through, so React sees the same element reference and
+skips reconciling that subtree — your component is never reached.
+
+Use `useFormValue` instead. The callback form, `form.watch(cb)`, is fine: it returns a
+real subscription rather than relying on a re-render. `getValues`, `setValue` and
+`register` all behave normally.
+{% /callout %}
+
+---
+
 ## Form config context
 
 Access form configuration through `useFormConfig`:
